@@ -1,0 +1,27 @@
+<h1>Listing user_comment_marks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mark</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_comment_marks.each do |user_comment_mark| %>
+      <tr>
+        <td><%= user_comment_mark.mark %></td>
+        <td><%= link_to 'Show', user_comment_mark %></td>
+        <td><%= link_to 'Edit', edit_user_comment_mark_path(user_comment_mark) %></td>
+        <td><%= link_to 'Destroy', user_comment_mark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User comment mark', new_user_comment_mark_path %>
