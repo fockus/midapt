@@ -6,9 +6,11 @@ gem 'rails', '4.0.2'
 # Use sqlite3 as the database for Active Record
 group :production do
   gem 'pg'
-end
+end        
+
 group :development, :test do
   gem 'sqlite3'
+  #gem 'pg'
 end
 
 # Use SCSS for stylesheets
@@ -38,6 +40,9 @@ group :doc do
 end
 
 gem 'bootstrap-sass'
+
+# For Heroku
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
