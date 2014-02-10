@@ -1,10 +1,10 @@
 class CreateMinds < ActiveRecord::Migration
   def change
     create_table :minds do |t|
-      t.string :title
+      t.string :question
       t.text :text
-      #t.integer :user_id
-      t.references :user, index: true
+      
+      t.references :user, index: true  #t.integer :user_id
 
       t.timestamps
     end

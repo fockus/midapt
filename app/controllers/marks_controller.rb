@@ -1,4 +1,4 @@
-class UserCommentMarksController < ApplicationController
+class MarksController < ApplicationController
   before_action :set_user_comment_mark, only: [:show, :edit, :update, :destroy]
 
   # GET /user_comment_marks
