@@ -1,4 +1,6 @@
 Midapt::Application.routes.draw do
+  resources :interests
+
   resources :mind_tags
 
   resources :user_mind_tag_marks

@@ -1,4 +1,4 @@
-class MindTagsController < ApplicationController
+class MindStreamsController < ApplicationController
   before_action :set_mind_tag, only: [:show, :edit, :update, :destroy]
 
   # GET /mind_tags
