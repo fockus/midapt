@@ -6,8 +6,9 @@ class CreateMarks < ActiveRecord::Migration
       t.references :user, index: true
 
       # Полиморфная асссоциация
-      t.integer :markable_id
-      t.string :markable_type
+      #t.integer :markable_id
+      #t.string :markable_type
+      t.references :markable, polymorphic: true
       
       t.timestamps
     end

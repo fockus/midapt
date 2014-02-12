@@ -1,4 +1,4 @@
-<h1>Listing mind_tags</h1>
+<h1>Listing mind_streams</h1>
 
 <table>
   <thead>
@@ -10,11 +10,11 @@
   </thead>
 
   <tbody>
-    <% @mind_tags.each do |mind_tag| %>
+    <% @mind_streams.each do |mind_stream| %>
       <tr>
-        <td><%= link_to 'Show', mind_tag %></td>
-        <td><%= link_to 'Edit', edit_mind_tag_path(mind_tag) %></td>
-        <td><%= link_to 'Destroy', mind_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', mind_stream %></td>
+        <td><%= link_to 'Edit', edit_mind_stream_path(mind_stream) %></td>
+        <td><%= link_to 'Destroy', mind_stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Mind tag', new_mind_tag_path %>
+<%= link_to 'New Mind stream', new_mind_stream_path %>

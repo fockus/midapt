@@ -1,15 +1,12 @@
 Midapt::Application.routes.draw do
+
   resources :interests
 
-  resources :mind_tags
+  resources :mind_streams
 
-  resources :user_mind_tag_marks
+  resources :marks
 
-  resources :user_mind_marks
-
-  resources :user_comment_marks
-
-  resources :tags
+  resources :streams
 
   resources :comments
 

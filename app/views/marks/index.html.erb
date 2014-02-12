@@ -1,4 +1,4 @@
-<h1>Listing user_comment_marks</h1>
+<h1>Listing marks</h1>
 
 <table>
   <thead>
@@ -11,12 +11,12 @@
   </thead>
 
   <tbody>
-    <% @user_comment_marks.each do |user_comment_mark| %>
+    <% @marks.each do |mark| %>
       <tr>
-        <td><%= user_comment_mark.mark %></td>
-        <td><%= link_to 'Show', user_comment_mark %></td>
-        <td><%= link_to 'Edit', edit_user_comment_mark_path(user_comment_mark) %></td>
-        <td><%= link_to 'Destroy', user_comment_mark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= mark.mark %></td>
+        <td><%= link_to 'Show', mark %></td>
+        <td><%= link_to 'Edit', edit_mark_path(mark) %></td>
+        <td><%= link_to 'Destroy', mark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New User comment mark', new_user_comment_mark_path %>
+<%= link_to 'New User comment mark', new_mark_path %>

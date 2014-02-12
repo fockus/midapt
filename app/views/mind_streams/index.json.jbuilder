@@ -1,4 +1,4 @@
-json.array!(@mind_tags) do |mind_tag|
-  json.extract! mind_tag, :id
-  json.url mind_tag_url(mind_tag, format: :json)
+json.array!(@mind_streams) do |mind_stream|
+  json.extract! mind_stream, :id
+  json.url mind_stream_url(mind_stream, format: :json)
 end
