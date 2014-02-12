@@ -13,27 +13,30 @@
 
 ActiveRecord::Schema.define(version: 20140209164517) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: true do |t|
     t.text     "message"
-    t.integer  "mind_id"
-    t.integer  "user_id"
+    t.integer  "mind_id",    null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["mind_id"], name: "index_comments_on_mind_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["mind_id"], name: "index_comments_on_mind_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "interests", force: true do |t|
     t.float    "gravity"
-    t.integer  "user_id"
-    t.integer  "stream_id"
+    t.integer  "user_id",    null: false
+    t.integer  "stream_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "interests", ["stream_id"], name: "index_interests_on_stream_id"
-  add_index "interests", ["user_id"], name: "index_interests_on_user_id"
+  add_index "interests", ["stream_id"], name: "index_interests_on_stream_id", using: :btree
+  add_index "interests", ["user_id"], name: "index_interests_on_user_id", using: :btree
 
   create_table "marks", force: true do |t|
     t.integer  "mark"
@@ -44,27 +47,27 @@ ActiveRecord::Schema.define(version: 20140209164517) do
     t.datetime "updated_at"
   end
 
-  add_index "marks", ["user_id"], name: "index_marks_on_user_id"
+  add_index "marks", ["user_id"], name: "index_marks_on_user_id", using: :btree
 
   create_table "mind_streams", force: true do |t|
-    t.integer  "mind_id"
-    t.integer  "streams_id"
+    t.integer  "mind_id",    null: false
+    t.integer  "stream_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "mind_streams", ["mind_id"], name: "index_mind_streams_on_mind_id"
-  add_index "mind_streams", ["streams_id"], name: "index_mind_streams_on_streams_id"
+  add_index "mind_streams", ["mind_id"], name: "index_mind_streams_on_mind_id", using: :btree
+  add_index "mind_streams", ["stream_id"], name: "index_mind_streams_on_stream_id", using: :btree
 
   create_table "minds", force: true do |t|
     t.string   "question"
     t.text     "text"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "minds", ["user_id"], name: "index_minds_on_user_id"
+  add_index "minds", ["user_id"], name: "index_minds_on_user_id", using: :btree
 
   create_table "streams", force: true do |t|
     t.string   "name"
@@ -77,5 +80,16 @@ ActiveRecord::Schema.define(version: 20140209164517) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_foreign_key "comments", "minds", name: "comments_mind_id_fk"
+  add_foreign_key "comments", "users", name: "comments_user_id_fk"
+
+  add_foreign_key "interests", "streams", name: "interests_stream_id_fk"
+  add_foreign_key "interests", "users", name: "interests_user_id_fk"
+
+  add_foreign_key "mind_streams", "minds", name: "mind_streams_mind_id_fk"
+  add_foreign_key "mind_streams", "streams", name: "mind_streams_stream_id_fk"
+
+  add_foreign_key "minds", "users", name: "minds_user_id_fk"
 
 end

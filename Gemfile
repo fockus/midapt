@@ -53,6 +53,9 @@ gem 'rails_12factor', group: :production
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Foreign keys
+gem 'foreigner'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

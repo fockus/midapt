@@ -10,5 +10,10 @@
   <%= @comment.mind %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= @comment.user %>
+</p>
+
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>
