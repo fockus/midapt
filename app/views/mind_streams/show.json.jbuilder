@@ -1,1 +1,1 @@
-json.extract! @mind_tag, :id, :created_at, :updated_at
+json.extract! @mind_stream, :id, :created_at, :updated_at

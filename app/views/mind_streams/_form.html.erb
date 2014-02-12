@@ -1,10 +1,10 @@
-<%= form_for(@mind_tag) do |f| %>
-  <% if @mind_tag.errors.any? %>
+<%= form_for(@mind_stream) do |f| %>
+  <% if @mind_stream.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@mind_tag.errors.count, "error") %> prohibited this mind_tag from being saved:</h2>
+      <h2><%= pluralize(@mind_stream.errors.count, "error") %> prohibited this mind_stream from being saved:</h2>
 
       <ul>
-      <% @mind_tag.errors.full_messages.each do |msg| %>
+      <% @mind_stream.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>

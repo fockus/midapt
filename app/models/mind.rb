@@ -3,5 +3,7 @@ class Mind < ActiveRecord::Base
 	
 	has_many	:comments
 	has_many	:marks, as: :markable
+
+	has_many	:mind_streams
 	has_many	:streams, through: :mind_streams
 end

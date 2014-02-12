@@ -53,8 +53,6 @@ gem 'rails_12factor', group: :production
 # Use unicorn as the app server
 gem 'unicorn'
 
-# For beautiful_scaffold
-gem 'beautiful_scaffold', '0.2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

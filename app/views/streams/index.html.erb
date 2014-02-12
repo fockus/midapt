@@ -1,4 +1,4 @@
-<h1>Listing tags</h1>
+<h1>Listing streams</h1>
 
 <table>
   <thead>
@@ -11,12 +11,12 @@
   </thead>
 
   <tbody>
-    <% @tags.each do |tag| %>
+    <% @streams.each do |stream| %>
       <tr>
-        <td><%= tag.name %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= stream.name %></td>
+        <td><%= link_to 'Show', stream %></td>
+        <td><%= link_to 'Edit', edit_stream_path(stream) %></td>
+        <td><%= link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Tag', new_tag_path %>
+<%= link_to 'New stream', new_stream_path %>

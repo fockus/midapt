@@ -1,4 +1,4 @@
-json.array!(@tags) do |tag|
-  json.extract! tag, :id, :name
-  json.url tag_url(tag, format: :json)
+json.array!(@streams) do |stream|
+  json.extract! stream, :id, :name
+  json.url stream_url(stream, format: :json)
 end
