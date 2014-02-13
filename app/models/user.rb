@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
 	has_many	:interests
 	has_many	:streams, through: :interests
 
+  validates :email,
+            presence: true,
+            uniqueness: { case_sensitive: false },
+            email_format: { message: "is not an e-mail" }
+
 end
