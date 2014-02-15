@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
 	has_many	:minds
 	has_many	:comments
 	has_many	:marks
@@ -7,9 +12,10 @@ class User < ActiveRecord::Base
 
   validates_associated :minds, :comments, :marks, :interests, :streams
 
-  validates :email,
-            presence: true,
-            uniqueness: { case_sensitive: false },
-            email_format: { message: "is not an e-mail" }
+
+  #validates :email,
+  #          presence: true,
+  #          uniqueness: { case_sensitive: false },
+  #          email_format: { message: "is not an e-mail" }
 
 end

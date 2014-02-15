@@ -8,6 +8,14 @@
 </head>
 <body>
 
+    <div class="session_info">
+      <% if current_user %>
+        <%= current_user.email %> | <%= link_to "Sign out", destroy_user_session_path %>
+      <% else %>
+          <%= link_to "Sign in", new_user_session_path %> | <%= link_to "Registraton", new_user_registration_path %>
+      <% end %>
+    </div>
+
 <%= yield %>
 
 </body>
