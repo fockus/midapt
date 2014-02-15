@@ -2,8 +2,7 @@ class CreateMarks < ActiveRecord::Migration
   def change
     create_table :marks do |t|
       t.integer :mark
-
-      t.references :user, index: true
+      t.references :user, index: true, null: false
 
       # Полиморфная асссоциация
       #t.integer :markable_id
@@ -12,5 +11,6 @@ class CreateMarks < ActiveRecord::Migration
       
       t.timestamps
     end
+
   end
 end

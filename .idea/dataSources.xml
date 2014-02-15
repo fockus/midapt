@@ -4,9 +4,7 @@
     <data-source source="LOCAL" name="Rails midapt: development" uuid="716b1be5-88c3-476f-8fb4-17a9fd9d299d">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5433/midapt</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>df99df9adf92df99df9bdf9d</user-password>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/Library/Preferences/RubyMine50/jdbc-drivers/sqlite-jdbc-3.7.2.jar</url>

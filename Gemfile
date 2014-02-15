@@ -56,6 +56,9 @@ gem 'unicorn'
 # Foreign keys
 gem 'foreigner'
 
+# Validate E-mail
+gem 'validates_email_format_of'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

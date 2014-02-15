@@ -3,8 +3,8 @@ class CreateInterests < ActiveRecord::Migration
     create_table :interests do |t|
       t.float :gravity
 
-      t.references :user, index: true, :null => false
-      t.references :stream, index: true, :null => false
+      t.references :user, index: true, null: false
+      t.references :stream, index: true, null: false
 
       t.timestamps
     end
