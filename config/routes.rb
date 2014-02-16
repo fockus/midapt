@@ -6,19 +6,19 @@ Midapt::Application.routes.draw do
 
   devise_for :users
 
+  get '/token' => 'home#token', as: :token
+
+  resources :home, only: :index
+
   resources :interests
-
   resources :mind_streams
-
   resources :marks
-
   resources :streams
-
   resources :comments
-
   resources :minds
-
   resources :users
+
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
