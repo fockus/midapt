@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a374fe15-a01a-4be5-9a64-4d98c11cbd71" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20140215200817_add_devise_to_users.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="midapt.iws" />
@@ -835,7 +833,11 @@
       <created>1392554960266</created>
       <updated>1392554960266</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Добавил авторизацию, через gem device&#10;">
+      <created>1392762587983</created>
+      <updated>1392762587983</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
