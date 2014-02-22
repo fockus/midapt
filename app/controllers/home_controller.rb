@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: :token
-
-  def token
-  end
+  before_action :authenticate_user!
+  #load_and_authorize_resource
 
 end

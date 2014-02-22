@@ -62,6 +62,9 @@ gem 'validates_email_format_of'
 # Authentication solution
 gem 'devise'
 
+# Привилегии
+gem 'cancan'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: :token
+  before_action :authenticate_user!
+  #load_and_authorize_resource
 
   # GET /users
   # GET /users.json
@@ -73,6 +74,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email)
     end
 
-    def token
-    end
 end
