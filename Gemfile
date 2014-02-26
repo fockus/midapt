@@ -7,14 +7,13 @@ group :production do
   gem 'pg'
 end
 
-group :test do
+group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
-  gem 'factory_girl'
 end
 
-group :development do
-  gem 'sqlite3'
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 # Use SCSS for stylesheets
