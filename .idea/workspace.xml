@@ -2,56 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a374fe15-a01a-4be5-9a64-4d98c11cbd71" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\comments_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\interests_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\mind_tags_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\minds_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\tags_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\user_comment_marks_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\user_mind_marks_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\user_mind_tag_marks_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\controllers\users_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\.keep" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\comments.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\interests.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\mind_tags.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\minds.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\tags.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\user_comment_marks.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\user_mind_marks.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\user_mind_tag_marks.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\fixtures\users.yml" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\.keep" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\comments_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\interests_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\mind_tags_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\minds_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\tags_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\user_comment_marks_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\user_mind_marks_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\user_mind_tag_marks_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\helpers\users_helper_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\integration\.keep" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\mailers\.keep" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\.keep" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\comment_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\interest_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\mind_tag_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\mind_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\tag_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\user_comment_mark_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\user_mind_mark_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\user_mind_tag_mark_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\models\user_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="D:\Projects\Ruby\midapt\test\test_helper.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/midapt.iml" afterPath="$PROJECT_DIR$/.idea/midapt.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\Projects\Ruby\midapt\test\controllers\.keep" afterPath="$PROJECT_DIR$/spec/models/mind_spec.rb" />
     </list>
     <ignored path="midapt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -865,13 +816,18 @@
       <created>1393072135045</created>
       <updated>1393072135045</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="rspec integration&#10;">
+      <created>1393423162398</created>
+      <updated>1393423162398</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287827" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3578174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -887,7 +843,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32992035" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287827" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297362" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -912,7 +867,8 @@
     <MESSAGE value="Добавил в модели валидации&#10;Изменил миграции, добавив запрет значения null в несколько полей" />
     <MESSAGE value="Добавил авторизацию, через gem device" />
     <MESSAGE value="Добавил авторизацию, через gem device&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил авторизацию, через gem device&#10;" />
+    <MESSAGE value="rspec integration&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="rspec integration&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
