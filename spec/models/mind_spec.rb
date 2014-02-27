@@ -13,18 +13,18 @@ describe Mind do
     mind_4 = Mind.new(question: '@' * 4 )
     mind_5 = Mind.new(question: '@' * 5 )
     mind_100 = Mind.new(question: '@' * 100 )
-    mind_1001 = Mind.new(question: '@' * 101 )
+    mind_101 = Mind.new(question: '@' * 101 )
 
 
     mind_4.valid?
     mind_5.valid?
     mind_100.valid?
-    mind_1001.valid?
+    mind_101.valid?
 
     mind_4.errors[:question].should_not be_empty
     mind_5.errors[:question].should be_empty
     mind_100.errors[:question].should be_empty
-    mind_1001.errors[:question].should_not be_empty
+    mind_101.errors[:question].should_not be_empty
   end
 
   it "validates its text and makes sure that it isn't nil" do
