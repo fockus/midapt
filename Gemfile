@@ -13,7 +13,7 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'factory_girl'
   gem 'database_cleaner'
 end
