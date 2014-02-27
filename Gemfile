@@ -13,7 +13,9 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'cucumber-rails'
   gem 'factory_girl'
+  gem 'database_cleaner'
 end
 
 # Use SCSS for stylesheets
