@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a374fe15-a01a-4be5-9a64-4d98c11cbd71" name="Default" comment=" add&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/db_migrate.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
+    <list default="true" id="a374fe15-a01a-4be5-9a64-4d98c11cbd71" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="midapt.iws" />
@@ -879,7 +877,11 @@
       <created>1393883353921</created>
       <updated>1393883353921</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary=" add&#10;">
+      <created>1393883411219</created>
+      <updated>1393883411219</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -927,7 +929,8 @@
     <MESSAGE value="Добавил авторизацию, через gem device" />
     <MESSAGE value="Добавил авторизацию, через gem device&#10;" />
     <MESSAGE value=" add" />
-    <option name="LAST_COMMIT_MESSAGE" value=" add" />
+    <MESSAGE value=" add&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value=" add&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
