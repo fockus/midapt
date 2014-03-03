@@ -5,11 +5,17 @@ gem 'rails', '4.0.2'
 
 group :production do
   gem 'pg'
-end        
+end
 
 group :development, :test do
   gem 'sqlite3'
-  #gem 'pg'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
+  gem 'factory_girl'
+  gem 'database_cleaner'
 end
 
 # Use SCSS for stylesheets
@@ -51,7 +57,7 @@ gem 'rails_12factor', group: :production
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
-gem 'unicorn'
+#gem 'unicorn'
 
 # Foreign keys
 gem 'foreigner'
