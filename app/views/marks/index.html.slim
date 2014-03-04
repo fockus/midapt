@@ -1,0 +1,17 @@
+h1 Listing marks
+table
+  thead
+    tr
+      th Mark
+      th
+      th
+      th
+  tbody
+    - @marks.each do |mark|
+      tr
+        td= mark.mark
+        td= link_to 'Show', mark
+        td= link_to 'Edit', edit_mark_path(mark)
+        td= link_to 'Destroy', mark, method: :delete, data:   confirm: 'Are you sure?'  
+br/
+= link_to 'New User comment mark', new_mark_path

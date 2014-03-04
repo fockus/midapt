@@ -1,0 +1,11 @@
+= form_for(@mind_stream) do |f|
+  - if @mind_stream.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@mind_stream.errors.count, "error")
+        | prohibited this mind_stream from being saved:
+      ul
+        - @mind_stream.errors.full_messages.each do |msg|
+          li= msg
+  .actions
+    = f.submit
