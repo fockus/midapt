@@ -1,15 +1,14 @@
 class MindsController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource  # CanCan
   before_action :set_mind, only: [:show, :edit, :update, :destroy]
 
+
   # GET /minds
-  # GET /minds.json
   def index
-    @minds = Mind.all
+    @minds = Mind.where( user_id: current_user.id )
   end
 
   # GET /minds/1
-  # GET /minds/1.json
   def show
   end
 
@@ -23,44 +22,32 @@ class MindsController < ApplicationController
   end
 
   # POST /minds
-  # POST /minds.json
   def create
     @mind = Mind.new(mind_params)
-
-    respond_to do |format|
-      if @mind.save
-        format.html { redirect_to @mind, notice: 'Mind was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @mind }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @mind.errors, status: :unprocessable_entity }
-      end
+    @mind.user_id = current_user.id
+    if @mind.save
+      redirect_to @mind, notice: 'Mind was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
+
   # PATCH/PUT /minds/1
-  # PATCH/PUT /minds/1.json
   def update
-    respond_to do |format|
-      if @mind.update(mind_params)
-        format.html { redirect_to @mind, notice: 'Mind was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @mind.errors, status: :unprocessable_entity }
-      end
+    if @mind.update(mind_params)
+      redirect_to @mind, notice: 'Mind was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
   # DELETE /minds/1
-  # DELETE /minds/1.json
   def destroy
     @mind.destroy
-    respond_to do |format|
-      format.html { redirect_to minds_url }
-      format.json { head :no_content }
-    end
+    redirect_to minds_url
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
