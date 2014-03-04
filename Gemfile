@@ -72,6 +72,10 @@ gem 'devise'
 # Привилегии
 gem 'cancan'
 
+# Automatically restful documentation
+# https://github.com/Apipie/apipie-demo
+gem 'apipie-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

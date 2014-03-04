@@ -21,6 +21,7 @@ module Midapt
     # config.i18n.default_locale = :de
 
     config.generators do |g|
+      #g.stylesheets false # не генерируем стили
       g.template_engine :slim # генерация view в haml
       g.test_framework :rspec, fixtures: true, views: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
