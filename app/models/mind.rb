@@ -14,5 +14,5 @@ class Mind < ActiveRecord::Base
 
   validates :text,
             presence: true,
-            length: { in: 5..1000}
+            length: { in: 5..1000 }
 end
