@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Midapt
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  body
+    #container
+      - flash.each do |name, msg|
+        = content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String)
+
+      - if user_signed_in?
+        #user_login_box style="float:left" 
+          = current_user.email
+          '  id:#{current_user.id}
+          = link_to 'My info', edit_user_registration_path
+          '
+          = link_to 'Sign out', destroy_user_session_path, method: :delete
+      - else
+        = link_to 'Sign in', new_user_session_path
+        = link_to 'Registraton', new_user_registration_path
+
+      div style="clear:both" 
+      == yield

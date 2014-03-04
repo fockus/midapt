@@ -1,0 +1,19 @@
+= form_for(@mind) do |f|
+  - if @mind.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@mind.errors.count, "error")
+        | prohibited this mind from being saved:
+      ul
+        - @mind.errors.full_messages.each do |msg|
+          li= msg
+  .field
+    = f.label :question
+    br/
+    = f.text_field :question
+  .field
+    = f.label :text
+    br/
+    = f.text_area :text
+  .actions
+    = f.submit

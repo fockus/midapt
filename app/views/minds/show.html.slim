@@ -1,0 +1,13 @@
+p#notice= notice
+p
+  strong Title:
+  = @mind.question
+p
+  strong Text:
+  = @mind.text
+p
+  strong User:
+  = @mind.user_id
+= link_to 'Edit', edit_mind_path(@mind)
+'
+= link_to 'Back', minds_path
