@@ -3,7 +3,6 @@ class MindsController < ApplicationController
   before_action :set_mind, only: [:show, :edit, :update, :destroy]
 
 
-
   def index
     # GET /minds?all=1
     if params[:all]

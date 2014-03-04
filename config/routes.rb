@@ -1,5 +1,6 @@
 Midapt::Application.routes.draw do
 
+  apipie
   devise_scope :user do
     get "sign_out", to: "devise/sessions#destroy"
   end
