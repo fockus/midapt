@@ -3,9 +3,21 @@ class MindsController < ApplicationController
   before_action :set_mind, only: [:show, :edit, :update, :destroy]
 
 
-  # GET /minds
+
   def index
-    @minds = Mind.where( user_id: current_user.id )
+    # GET /minds?all=1
+    if params[:all]
+      @minds = Mind.all
+
+    # GET /minds?id=1
+    elsif params[:id]
+      @minds = Mind.where(user_id: params[:id])
+
+     # GET /minds
+    else
+      @minds = Mind.where( user_id: current_user.id )
+    end
+
   end
 
   # GET /minds/1
@@ -57,6 +69,6 @@ class MindsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mind_params
-      params.require(:mind).permit(:question, :text, :user_id)
+      params.require(:mind).permit(:question, :text)
     end
 end
