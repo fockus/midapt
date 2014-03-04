@@ -7,13 +7,13 @@ Midapt::Application.routes.draw do
   devise_for :users
 
   resources :home, only: :index
-  resources :interests
-  resources :mind_streams
-  resources :marks
-  resources :streams
+  #resources :interests
+  #resources :mind_streams
+  #resources :marks
+  #resources :streams
   resources :comments
   resources :minds
-  resources :users
+  #resources :users
 
   root 'home#index'
 
