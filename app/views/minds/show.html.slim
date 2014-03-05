@@ -8,6 +8,10 @@ p
 p
   strong User:
   = @mind.user_id
+p
+  strong Streams:
+  = @mind.streams
+
 = link_to 'Edit', edit_mind_path(@mind)
 '
 = link_to 'Back', minds_path
