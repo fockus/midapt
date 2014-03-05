@@ -1,6 +1,7 @@
 Midapt::Application.routes.draw do
 
-  apipie
+  apipie #doc restful
+
   devise_scope :user do
     get "sign_out", to: "devise/sessions#destroy"
   end
@@ -17,9 +18,6 @@ Midapt::Application.routes.draw do
   #resources :users
 
   root 'home#index'
-
-  #get 'minds/all' => 'minds#all'
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

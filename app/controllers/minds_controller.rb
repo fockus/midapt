@@ -10,7 +10,7 @@ class MindsController < ApplicationController
 
     # GET /minds?id=1
     elsif params[:id]
-      @minds = Mind.where(user_id: params[:id])
+      @minds = Mind.where( user_id: params[:id] )
 
      # GET /minds
     else
