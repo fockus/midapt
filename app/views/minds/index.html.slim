@@ -4,7 +4,6 @@ table
     tr
       th Title
       th Text
-      th User
       th Streams
       th
       th
@@ -14,8 +13,10 @@ table
       tr
         td= mind.question
         td= mind.text
-        td= mind.user_id
-        td= mind.streams
+        td
+          - mind.streams.each do |stream|
+            ' 
+            =stream.name
         td= link_to 'Show', mind
         td= link_to 'Edit', edit_mind_path(mind)
         td= link_to 'Destroy', mind, method: :delete

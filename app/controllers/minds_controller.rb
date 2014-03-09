@@ -4,19 +4,14 @@ class MindsController < ApplicationController
 
 
   def index
-    # GET /minds?all=1
-    if params[:all]
-      @minds = Mind.all
+    # GET /minds
+    #@minds = Mind.where( user_id: current_user.id )
+    @user = current_user
+    @minds = @user.minds
 
-    # GET /minds?id=1
-    elsif params[:id]
-      @minds = Mind.where( user_id: params[:id] )
+    #@minds = Mind.my_minds
 
-     # GET /minds
-    else
-      @minds = Mind.where( user_id: current_user.id )
-    end
-
+ 
   end
 
   # GET /minds/1
