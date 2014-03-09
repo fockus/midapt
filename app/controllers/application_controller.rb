@@ -4,10 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception # надо выяснить что это!
   before_filter :configure_permitted_parameters, if: :devise_controller?  # надо выяснить что это!
 
-
-  #rescue_from CanCan::AccessDenied do
-  #  render_403
-  #end
+  @@user = @current_user
 
   protected
 

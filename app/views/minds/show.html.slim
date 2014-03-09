@@ -6,11 +6,10 @@ p
   strong Text:
   = @mind.text
 p
-  strong User:
-  = @mind.user_id
-p
   strong Streams:
-  = @mind.streams
+  - @mind.streams.each do |stream|
+  	' 
+  	=stream.name
 
 = link_to 'Edit', edit_mind_path(@mind)
 '

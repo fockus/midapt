@@ -4,14 +4,8 @@ class MindsController < ApplicationController
 
 
   def index
-    # GET /minds
-    #@minds = Mind.where( user_id: current_user.id )
-    @user = current_user
-    @minds = @user.minds
-
-    #@minds = Mind.my_minds
-
- 
+    # GET /minds 
+    @minds = current_user.minds.eager_load(:streams)
   end
 
   # GET /minds/1
@@ -58,7 +52,7 @@ class MindsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mind
-      @mind = Mind.find(params[:id])
+      @mind = Mind.eager_load(:streams).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

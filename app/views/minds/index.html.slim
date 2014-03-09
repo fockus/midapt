@@ -17,6 +17,7 @@ table
           - mind.streams.each do |stream|
             ' 
             =stream.name
+            /= render 'streams'
         td= link_to 'Show', mind
         td= link_to 'Edit', edit_mind_path(mind)
         td= link_to 'Destroy', mind, method: :delete
