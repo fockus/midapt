@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 	has_many	:interests
 	has_many	:streams, through: :interests
 
-  validates_associated :minds, :comments, :marks, :interests, :streams
+	validates_associated :minds, :comments, :marks, :interests, :streams
 
 
   #validates :email,

@@ -2,14 +2,18 @@ h1 Listing mind_streams
 table
   thead
     tr
+      th Mind_id
+      th Stream_id
       th
       th
       th
   tbody
     - @mind_streams.each do |mind_stream|
       tr
+        td= mind_stream.mind_id
+        td= mind_stream.stream_id
         td= link_to 'Show', mind_stream
         td= link_to 'Edit', edit_mind_stream_path(mind_stream)
-        td= link_to 'Destroy', mind_stream, method: :delete, data:   confirm: 'Are you sure?'  
+        td= link_to 'Destroy', mind_stream, method: :delete 
 br/
 = link_to 'New Mind stream', new_mind_stream_path

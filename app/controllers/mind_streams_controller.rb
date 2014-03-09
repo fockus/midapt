@@ -69,6 +69,6 @@ class MindStreamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mind_stream_params
-      params[:mind_stream]
+      params.require(:mind_stream).permit(:mind_id, :stream_id)
     end
 end

@@ -10,12 +10,12 @@ Midapt::Application.routes.draw do
 
   resources :home, only: :index
   #resources :interests
-  #resources :mind_streams
+  resources :mind_streams
   #resources :marks
-  #resources :streams
+  resources :streams
   resources :comments
   resources :minds
-  #resources :users
+  resources :users
 
   root 'home#index'
 

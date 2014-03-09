@@ -1,4 +1,12 @@
 p#notice= notice
+
+p
+  strong Mind_id:
+  = @mind_stream.mind_id
+p
+  strong Stream_id:
+  = @mind_stream.stream_id
+
 = link_to 'Edit', edit_mind_stream_path(@mind_stream)
-| \
-| \#{link_to 'Back', mind_streams_path}
+' 
+= link_to 'Back', mind_streams_path

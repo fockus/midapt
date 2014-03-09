@@ -7,5 +7,16 @@
       ul
         - @mind_stream.errors.full_messages.each do |msg|
           li= msg
+
+  .field
+    = f.label :mind_id
+    br/
+    = f.text_field :mind_id
+
+  .field
+    = f.label :stream_id
+    br/
+    = f.text_field :stream_id
+
   .actions
     = f.submit
