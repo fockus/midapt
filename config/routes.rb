@@ -9,18 +9,15 @@ Midapt::Application.routes.draw do
   devise_for :users
 
   resources :home, only: :index
-  #resources :interests
+  resources :interests
   resources :mind_streams
-  #resources :marks
+  resources :marks
   resources :streams
   resources :comments
-  resources :minds
+  resources :minds, path: '/my/minds'
   resources :users
 
   root 'home#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
 
 
 end

@@ -7,9 +7,7 @@ p
   = @mind.text
 p
   strong Streams:
-  - @mind.streams.each do |stream|
-  	' 
-  	=stream.name
+  = render partial: 'streams', locals: {streams: @mind.streams}
 
 = link_to 'Edit', edit_mind_path(@mind)
 '
