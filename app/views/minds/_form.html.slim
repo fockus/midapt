@@ -21,7 +21,7 @@
       .field
         label for="mind_streams_#{i}" Stream #{n+=1}
         br/
-        input id="mind_streams_#{i}" name="mind[streams][#{i}][name]" type="text" value=@mind.streams[i].name
+        input id="mind_streams_#{i}" name="mind[streams][#{i}][name]" type="text" value="#{@mind.streams[i].nil? ? '' : @mind.streams[i].name}"
 
 
     /- @mind.streams.each do |stream|
