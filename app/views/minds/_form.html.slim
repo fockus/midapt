@@ -15,9 +15,28 @@
     = f.label :text
     br/
     = f.text_area :text
-  .field
-    = f.label :streams
-    br/
-    = f.text_field :streams
+
+    - n = 0
+    - 3.times do |i|
+      .field
+        label for="mind_streams_#{i}" Stream #{n+=1}
+        br/
+        input id="mind_streams_#{i}" name="mind[streams][#{i}][name]" type="text" value=@mind.streams[i].name
+
+
+    /- @mind.streams.each do |stream|
+    /  = f.fields_for "streams[]", stream do |stream_fields|
+    /    .field
+    /      = stream_fields.label :name, "Stream"
+    /      br/
+    /      = stream_fields.text_field :name
+
+
+    /= f.fields_for :streams, @mind.streams do |stream_fields|
+    /  .field
+    /    = stream_fields.label :name, "Stream #{stream_fields.index}"
+    /    br/
+    /    = stream_fields.text_field :name, name: "mind[streams][#{stream_fields.index}][name]"
+
   .actions
     = f.submit

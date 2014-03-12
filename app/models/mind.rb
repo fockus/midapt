@@ -7,6 +7,8 @@ class Mind < ActiveRecord::Base
 	has_many	:mind_streams
 	has_many	:streams, through: :mind_streams
 
+	accepts_nested_attributes_for :streams
+
 	validates_associated :comments, :marks, :mind_streams, :streams
 
 	validates :question,
@@ -16,8 +18,5 @@ class Mind < ActiveRecord::Base
 		presence: true,
 		length: { in: 5..1000 }
 
-	# def my_minds
-	# 	self.where( user_id: current_user.id )  	
-	# end
 
 end
