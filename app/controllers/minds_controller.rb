@@ -4,8 +4,13 @@ class MindsController < ApplicationController
 
 
   def index
-    # GET /minds 
-    @minds = current_user.minds.eager_load(:streams)
+    # GET /minds
+    if current_user.nil?
+      redirect_to new_user_session_path, notice: 'You should be signed in to view your minds.'
+    else
+      @minds = current_user.minds.eager_load(:streams)
+    end
+
   end
 
   # GET /minds/1
@@ -23,13 +28,18 @@ class MindsController < ApplicationController
 
   # POST /minds
   def create
-    @mind = Mind.new(mind_params)
-    @mind.user_id = current_user.id
-    if @mind.save
-      redirect_to @mind, notice: 'Mind was successfully created.'
+    if current_user.nil?
+      redirect_to new_user_session_path, notice: 'You should be signed in to create your mind.'
     else
-      render action: 'new'
+      @mind = Mind.new(mind_params)
+      @mind.user_id = current_user.id
+      if @mind.save
+        redirect_to @mind, notice: 'Mind was successfully created.'
+      else
+        render action: 'new'
+      end
     end
+
   end
 
 
