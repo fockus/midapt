@@ -5,10 +5,10 @@ class Mind < ActiveRecord::Base
 	has_many	:marks, as: :markable
 
 	has_many	:mind_streams, inverse_of: :mind, :dependent => :destroy
-	has_many	:streams, through: :mind_streams, :dependent => :destroy
+	has_many	:streams, through: :mind_streams
 
 	#accepts_nested_attributes_for :mind_streams, :allow_destroy => true
-	accepts_nested_attributes_for :streams, :allow_destroy => true
+	accepts_nested_attributes_for :streams
 
 	validates_associated :comments, :marks, :mind_streams, :streams
 
