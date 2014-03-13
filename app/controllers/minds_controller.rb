@@ -73,3 +73,20 @@ class MindsController < ApplicationController
       #authorize! :manage, @mind
     end
 end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_mind
+      @mind = Mind.eager_load(:streams).where(id: params[:id]).first
+      render_404 unless @mind
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def mind_params
+      params.require(:mind).permit(:question, :text, streams_attributes: [:id, :name])
+    end
+
+    def check_permissions
+      #authorize! :manage, @mind
+    end
+end

@@ -23,15 +23,6 @@
     /    = f.text_field "streams_#{i}", name: "mind[streams][#{i}][name]",
     /    value: @mind.streams[i].nil? ? '' : @mind.streams[i].name
 
-    / Пример кода, когда надо вывести поля массива  
-    /- @mind.streams.each do |stream|
-    /  = f.fields_for "streams[]", stream do |stream_fields|
-    /    .field
-    /      = stream_fields.label :name, "Stream"
-    /      br
-    /      = stream_fields.text_field :name
-
-
     / Код, когда надо вывести поля streams одним циклом, но с accepts_nested_attributes_for :streams
     = f.fields_for :streams do |stream_fields|
       .field
