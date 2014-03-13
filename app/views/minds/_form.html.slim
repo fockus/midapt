@@ -9,38 +9,38 @@
           li= msg
   .field
     = f.label :question
-    br/
+    br
     = f.text_field :question
   .field
     = f.label :text
-    br/
+    br
     = f.text_area :text
 
-    - n = 0
-    - 3.times do |i|
-      .field
-        = f.label "streams_#{i}"      
-        br/
-        = f.text_field "streams_#{i}" , name: "mind[streams][#{i}][name]",
-        value: @mind.streams[i].nil? ? '' : @mind.streams[i].name
-        
+    /- 3.times do |i|
+    /  .field
+    /    = f.label "streams_#{i}"     
+    /    br
+    /    = f.text_field "streams_#{i}", name: "mind[streams][#{i}][name]",
+    /    value: @mind.streams[i].nil? ? '' : @mind.streams[i].name
 
     / Пример кода, когда надо вывести поля массива  
     /- @mind.streams.each do |stream|
     /  = f.fields_for "streams[]", stream do |stream_fields|
     /    .field
     /      = stream_fields.label :name, "Stream"
-    /      br/
+    /      br
     /      = stream_fields.text_field :name
 
 
-    / Пример кода, когда надо вывести поля массива с один циклом, но с accepts_nested_attributes_for :streams
-    /= f.fields_for :streams, @mind.streams do |stream_fields|
-    /  .field
-    /    = stream_fields.label :name, "Stream #{stream_fields.index}"
-    /    br/
-    /    = stream_fields.text_field :name, name: "mind[streams][#{stream_fields.index}][name]"
+    / Код, когда надо вывести поля streams одним циклом, но с accepts_nested_attributes_for :streams
+    = f.fields_for :streams do |stream_fields|
+      .field
+        = stream_fields.label :name
+        br
+        = stream_fields.text_field :name
 
+    = debug @mind  
+    
 
   .actions
     = f.submit

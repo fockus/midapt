@@ -9,6 +9,8 @@ p
   strong Streams:
   = render partial: 'streams', locals: {streams: @mind.streams}
 
+= debug @mind
+
 = link_to 'Edit', edit_mind_path(@mind)
 '
 = link_to 'Back', minds_path

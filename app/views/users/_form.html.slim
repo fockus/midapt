@@ -9,7 +9,12 @@
           li= msg
   .field
     = f.label :email
-    br/
+    br
     = f.text_field :email
+  .field
+    = f.label :role
+    br
+    = f.collection_select :role, User::ROLES, :to_s, :humanize
+
   .actions
     = f.submit
