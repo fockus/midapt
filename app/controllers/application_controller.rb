@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
     #render_403
   end
 
-=begin
-<<<<<<< HEAD
+
   #It may be a good idea to specify the rescue from action:
   rescue_from CanCan::Unauthorized do |exception|
     if current_user.nil?
@@ -38,9 +37,8 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-=======
->>>>>>> FETCH_HEAD
-=end
+
+
 
 
   protected
