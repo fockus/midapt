@@ -1,8 +1,7 @@
 class MindsController < ApplicationController
-  #load_and_authorize_resource  # CanCan
   before_filter :authenticate_user! # Device
-  before_filter :check_permissions, only: [:show, :edit, :update, :destroy, :create]
   before_action :set_mind, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource param_method: :mind_params # CanCan
 
 
   def index
@@ -23,6 +22,7 @@ class MindsController < ApplicationController
   # GET /minds/1/edit
   def edit
     @mind.streams.build
+    #authorize! :crud, @mind
   end
 
   # POST /minds
@@ -64,8 +64,4 @@ class MindsController < ApplicationController
       params.require(:mind).permit(:question, :text, streams_attributes: [:id, :name])
     end
 
-    # Проверка прав на редактирование
-    def check_permissions
-      #authorize! :crud, Mind
-    end
 end

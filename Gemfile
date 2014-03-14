@@ -70,7 +70,8 @@ gem 'validates_email_format_of'
 gem 'devise'
 
 # Привилегии
-gem 'cancan'
+gem 'cancancan', '~> 1.7'
+#gem 'cancan'
 
 # Automatically restful documentation
 # https://github.com/Apipie/apipie-demo

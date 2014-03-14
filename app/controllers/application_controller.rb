@@ -10,9 +10,14 @@ class ApplicationController < ActionController::Base
   #skip_authorization_check :only => [:new, :create]
 
   # Перехватываем исключения CanCan
+  #rescue_from CanCan::AccessDenied do |exception|
+  #  render_403
+  #end
+
   rescue_from CanCan::AccessDenied do |exception|
-    render_403
+    redirect_to root_url, :alert => exception.message
   end
+
 
   protected
 
