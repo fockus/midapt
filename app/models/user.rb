@@ -8,13 +8,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-	has_many	:minds
-	has_many	:comments
-	has_many	:marks
-	has_many	:interests
+	has_many	:minds, :dependent => :destroy
+	has_many	:comments, :dependent => :destroy
+	has_many	:marks, :dependent => :destroy
+	has_many	:interests, :dependent => :destroy
 	has_many	:streams, through: :interests
 
 	validates_associated :minds, :comments, :marks, :interests, :streams
+
+  accepts_nested_attributes_for :minds, :allow_destroy => true 
 
 
   #validates :email,
