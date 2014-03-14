@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 group :production do
-  gem 'pg'
+  #gem 'pg'
 end
 
 group :development, :test do
@@ -70,7 +70,8 @@ gem 'validates_email_format_of'
 gem 'devise'
 
 # Привилегии
-gem 'cancan'
+gem 'cancancan', '~> 1.7'
+#gem 'cancan'
 
 # Automatically restful documentation
 # https://github.com/Apipie/apipie-demo
