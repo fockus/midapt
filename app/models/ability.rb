@@ -11,8 +11,13 @@ class Ability
       can :read, :all
     end
     
+    # Разрешаем все изменение в мысли автору
     can :crud, Mind do |mind|
-      mind.user.id == user.id
+      unless mind.user.nil?
+        mind.user.id == user.id
+      else
+        true
+      end
     end
 
     # See the wiki for details:

@@ -22,7 +22,6 @@ class MindsController < ApplicationController
   # GET /minds/1/edit
   def edit
     @mind.streams.build
-    #authorize! :crud, @mind
   end
 
   # POST /minds
@@ -61,7 +60,8 @@ class MindsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mind_params
-      params.require(:mind).permit(:question, :text, streams_attributes: [:id, :name])
+      #params.require(:mind).permit(:question, :text, streams_attributes: [:id, :name])
+      params.require(:mind).permit(:question, :text)
     end
 
 end
