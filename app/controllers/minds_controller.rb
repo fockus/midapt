@@ -62,7 +62,7 @@ class MindsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mind_params
-      params.require(:mind).permit(:question, :text, streams_attributes: [:id, :name])
+      params.require(:mind).permit(:title, :text, streams_attributes: [:id, :name])
     end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312235058) do
+ActiveRecord::Schema.define(version: 20140315225956) do
 
   create_table "comments", force: true do |t|
     t.text     "message",    null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140312235058) do
   add_index "mind_streams", ["stream_id"], name: "index_mind_streams_on_stream_id"
 
   create_table "minds", force: true do |t|
-    t.string   "question"
+    t.string   "title"
     t.text     "text",       null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at"
