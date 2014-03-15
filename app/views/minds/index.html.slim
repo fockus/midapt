@@ -11,7 +11,7 @@ table
   tbody
     - @minds.each do |mind|
       tr
-        td= mind.question
+        td= mind.title
         td= mind.text
         td= render partial: 'streams', locals: {streams: mind.streams}
         td= link_to 'Show', mind

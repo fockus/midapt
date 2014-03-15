@@ -12,7 +12,7 @@ class Mind < ActiveRecord::Base
 
 	#validates_associated :comments, :marks, :mind_streams, :streams
 
-	validates :question,
+	validates :title,
 		length: { in: 5..100 }
 
 	validates :text,
