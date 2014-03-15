@@ -10,7 +10,7 @@ class Mind < ActiveRecord::Base
 	accepts_nested_attributes_for :mind_streams, :allow_destroy => true
 	accepts_nested_attributes_for :streams
 
-	validates_associated :comments, :marks, :mind_streams, :streams
+	#validates_associated :comments, :marks, :mind_streams, :streams
 
 	validates :question,
 		length: { in: 5..100 }
