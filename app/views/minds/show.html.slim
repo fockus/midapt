@@ -8,6 +8,7 @@ p
 p
   strong Streams:
   = @mind.streams.nil? || @mind.streams.length == 0 ? '' : @mind.streams.collect(&:name).join(' ')
+  /= render partial: 'streams', locals: {streams: @mind.streams}
 
 = debug @mind
 

@@ -13,7 +13,8 @@ table
       tr
         td= mind.title
         td= mind.text
-        td= render partial: 'streams', locals: {streams: mind.streams}
+        td= mind.streams.nil? || mind.streams.length == 0 ? '' : mind.streams.collect(&:name).join(' ')
+        /td= render partial: 'streams', locals: {streams: mind.streams}
         td= link_to 'Show', mind
         td= link_to 'Edit', edit_mind_path(mind)
         td= link_to 'Destroy', mind, method: :delete

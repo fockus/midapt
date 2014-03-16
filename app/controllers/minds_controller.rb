@@ -13,12 +13,9 @@ class MindsController < ApplicationController
 
   def new
     @mind = current_user.minds.new
-    3.times { @mind.streams.build }
   end
 
   def edit
-    # максимальное количество потоков может быть 3
-    (3 - @mind.streams.length).times { @mind.streams.build }  
   end
 
   def create
@@ -32,25 +29,26 @@ class MindsController < ApplicationController
   end
 
   def update
-    if @mind.update_attributes mind_params
+    #debugger
+    if @mind.update mind_params
       new_names = params[:mind][:streams].split(' ')
       @mind.streams.each do |stream|
-        if(new_names.index { |s| s == stream.name }.nil?)
-          @mind.streams.delete(stream)
-        end
+          @mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
       end
+    
       new_names.each do |stream_name|
         if @mind.streams.index { |s| s.name == stream_name }.nil?
           stream = Stream.where(name: stream_name).first
           @mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
         end
       end
+    
       @mind.save
+
       redirect_to @mind, notice: 'Mind was successfully updated.'
     else
       render action: 'edit'
     end
-
   end
 
   def destroy
@@ -61,11 +59,11 @@ class MindsController < ApplicationController
 
   private
     def set_mind
-      render_404 unless @mind = Mind.where(id: params[:id]).eager_load(:streams, :user).first
+      render_404 unless @mind = Mind.where(id: params[:id]).first
     end
 
     def mind_params
-      params.require(:mind).permit(:title, :text, streams_attributes: [:id, :name])
+      params.require(:mind).permit(:title, :text)
     end
 
 end
