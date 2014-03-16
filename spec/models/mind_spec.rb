@@ -1,26 +1,21 @@
 require 'spec_helper'
 
 describe Mind do
-  it "validates its topic and makes sure that it isn't nil" do
+
+  it "validates its title and makes sure that it's empty or it's consisted of 5-100 symbols" do
     mind_nil = Mind.new(title: nil)
-
-    mind_nil.valid?
-
-    mind_nil.errors[:title].should_not be_empty
-  end
-
-  it "validates its topic and makes sure that it's consisted of 5-100 symbols" do
     mind_4 = Mind.new(title: '@' * 4 )
     mind_5 = Mind.new(title: '@' * 5 )
     mind_100 = Mind.new(title: '@' * 100 )
     mind_101 = Mind.new(title: '@' * 101 )
 
-
+    mind_nil.valid?
     mind_4.valid?
     mind_5.valid?
     mind_100.valid?
     mind_101.valid?
 
+    mind_nil.errors[:title].should be_empty
     mind_4.errors[:title].should_not be_empty
     mind_5.errors[:title].should be_empty
     mind_100.errors[:title].should be_empty

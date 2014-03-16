@@ -12,8 +12,8 @@ class Mind < ActiveRecord::Base
 
 	#validates_associated :comments, :marks, :mind_streams, :streams
 
-	validates :title,
-		length: { in: 5..100 }
+  validates :title,
+		length: { in: 5..100 }, allow_blank: true
 
 	validates :text,
 		presence: true,
