@@ -19,36 +19,12 @@ class MindsController < ApplicationController
   end
 
   def create
-    @mind = current_user.minds.create mind_params
-    
-    if @mind.errors.empty?
-      redirect_to @mind, notice: 'Mind was successfully created.'
-    else
-      render action: 'new'
-    end
+    @mind = current_user.minds.new mind_params
+    @mind.errors.empty? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
   end
 
   def update
-    #debugger
-    if @mind.update mind_params
-      new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
-      @mind.streams.each do |stream|
-          @mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
-      end
-    
-      new_names.each do |stream_name|
-        if @mind.streams.index { |s| s.name == stream_name }.nil?
-          stream = Stream.where(name: stream_name).first
-          @mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
-        end
-      end
-    
-      @mind.save
-
-      redirect_to @mind, notice: 'Mind was successfully updated.'
-    else
-      render action: 'edit'
-    end
+    @mind.update(mind_params) ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
   end
 
   def destroy
@@ -57,13 +33,42 @@ class MindsController < ApplicationController
   end
 
 
+
   private
+
     def set_mind
       render_404 unless @mind = Mind.where(id: params[:id]).first
     end
 
+
     def mind_params
       params.require(:mind).permit(:title, :text)
+    end
+
+
+    def save_streams mind
+      new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
+      mind.streams.each do |stream|
+          mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
+      end  
+
+      new_names.each do |stream_name|
+        if mind.streams.index { |s| s.name == stream_name }.nil?
+          stream = Stream.where(name: stream_name).first
+          mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
+        end
+      end      
+    end
+
+
+    def save_and_notificate(hash, mind=hash[:mind])
+      save_streams mind
+      mind.save
+      if hash[:action] == 'update'
+        redirect_to mind, notice: 'Mind was successfully updated.', action: 'index'
+      elsif hash[:action] == 'create'
+        redirect_to mind, notice: 'Mind was successfully created.', action: 'index'
+      end     
     end
 
 end
