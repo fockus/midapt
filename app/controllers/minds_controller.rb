@@ -31,7 +31,7 @@ class MindsController < ApplicationController
   def update
     #debugger
     if @mind.update mind_params
-      new_names = params[:mind][:streams].split(' ')
+      new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
       @mind.streams.each do |stream|
           @mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
       end
