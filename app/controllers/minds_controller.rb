@@ -5,27 +5,22 @@ class MindsController < ApplicationController
 
 
   def index
-    # GET /minds 
     @minds = current_user.minds.eager_load :streams
   end
 
-  # GET /minds/1
   def show
   end
 
-  # GET /minds/new
   def new
     @mind = current_user.minds.new
     3.times { @mind.streams.build }
   end
 
-  # GET /minds/1/edit
   def edit
     # максимальное количество потоков может быть 3
     (3 - @mind.streams.length).times { @mind.streams.build }  
   end
 
-  # POST /minds
   def create
     @mind = current_user.minds.create mind_params
     
@@ -36,8 +31,6 @@ class MindsController < ApplicationController
     end
   end
 
-
-  # PATCH/PUT /minds/1
   def update
     if @mind.update_attributes mind_params
       redirect_to @mind, notice: 'Mind was successfully updated.'
@@ -47,7 +40,6 @@ class MindsController < ApplicationController
 
   end
 
-  # DELETE /minds/1
   def destroy
     @mind.destroy
     redirect_to minds_url
@@ -55,12 +47,10 @@ class MindsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_mind
       render_404 unless @mind = Mind.where(id: params[:id]).eager_load(:streams, :user).first
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def mind_params
       params.require(:mind).permit(:title, :text, streams_attributes: [:id, :name])
     end

@@ -10,6 +10,7 @@ end
 group :development, :test do
   gem 'sqlite3'
   #gem 'pg'
+  #gem 'activerecord-postgres-hstore'
 end
 
 group :test do
@@ -40,8 +41,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-# Подключение Bootstrap
-gem 'bootstrap-sass'
+# Подключение Fundution 4
+#gem 'zurb-foundation'
 
 # Шаблонизатор Slim
 gem 'slim-rails'
