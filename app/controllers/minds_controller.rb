@@ -33,6 +33,19 @@ class MindsController < ApplicationController
 
   def update
     if @mind.update_attributes mind_params
+      new_names = params[:mind][:streams].split(' ')
+      @mind.streams.each do |stream|
+        if(new_names.index { |s| s == stream.name }.nil?)
+          @mind.streams.delete(stream)
+        end
+      end
+      new_names.each do |stream_name|
+        if @mind.streams.index { |s| s.name == stream_name }.nil?
+          stream = Stream.where(name: stream_name).first
+          @mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
+        end
+      end
+      @mind.save
       redirect_to @mind, notice: 'Mind was successfully updated.'
     else
       render action: 'edit'

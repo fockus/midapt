@@ -15,13 +15,10 @@
     = f.label :text
     br
     = f.text_area :text
-
-    / Код, когда надо вывести поля streams одним циклом, но с accepts_nested_attributes_for :streams
-    = f.fields_for :streams do |stream_fields|
-      .field
-        = stream_fields.label :name
-        br
-        = stream_fields.text_field :name
+  .field
+    = f.label :streams
+    br
+    = f.text_field :streams, :value => @mind.streams.nil? ? '' : @mind.streams.collect(&:name).join(' ')
 
     = debug @mind  
     

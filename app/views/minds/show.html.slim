@@ -7,7 +7,7 @@ p
   = @mind.text
 p
   strong Streams:
-  = render partial: 'streams', locals: {streams: @mind.streams}
+  = @mind.streams.nil? || @mind.streams.length == 0 ? '' : @mind.streams.collect(&:name).join(' ')
 
 = debug @mind
 
