@@ -72,7 +72,6 @@ gem 'devise'
 
 # Привилегии
 gem 'cancancan', '~> 1.7'
-#gem 'cancan'
 
 # Automatically restful documentation
 # https://github.com/Apipie/apipie-demo
@@ -83,4 +82,4 @@ gem 'apipie-rails'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
