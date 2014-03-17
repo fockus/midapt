@@ -22,6 +22,7 @@
 /tmp
 
 =======
+Gemfile.lock
 *.rbc
 *.sassc
 .sass-cache
