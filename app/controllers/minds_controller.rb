@@ -19,12 +19,22 @@ class MindsController < ApplicationController
   end
 
   def create
-    @mind = current_user.minds.new mind_params
-    @mind.errors.empty? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
+    if validate_streams
+      @mind = current_user.minds.new mind_params
+      @mind.errors.empty? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
+    else
+      flash[:error] = "Streams are invalid."
+      render(action: 'new')
+    end
   end
 
   def update
-    @mind.update(mind_params) ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
+    if validate_streams
+      @mind.assign_attributes(mind_params) ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
+    else
+      flash[:error] = "Streams are invalid."
+      render(action: 'new')
+    end
   end
 
   def destroy
@@ -33,42 +43,46 @@ class MindsController < ApplicationController
   end
 
 
-
   private
 
-    def set_mind
-      render_404 unless @mind = Mind.where(id: params[:id]).first
+  def set_mind
+    render_404 unless @mind = Mind.where(id: params[:id]).first
+  end
+
+
+  def mind_params
+    params.require(:mind).permit(:title, :text)
+  end
+
+
+  def save_streams mind
+    new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
+    mind.streams.each do |stream|
+      mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
     end
 
-
-    def mind_params
-      params.require(:mind).permit(:title, :text)
+    new_names.each do |stream_name|
+      if mind.streams.index { |s| s.name == stream_name }.nil?
+        stream = Stream.where(name: stream_name).first
+        mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
+      end
     end
+  end
 
 
-    def save_streams mind
-      new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
-      mind.streams.each do |stream|
-          mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
-      end  
-
-      new_names.each do |stream_name|
-        if mind.streams.index { |s| s.name == stream_name }.nil?
-          stream = Stream.where(name: stream_name).first
-          mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
-        end
-      end      
+  def save_and_notificate(hash, mind=hash[:mind])
+    save_streams mind
+    mind.save
+    if hash[:action] == 'update'
+      redirect_to mind, notice: 'Mind was successfully updated.', action: 'index'
+    elsif hash[:action] == 'create'
+      redirect_to mind, notice: 'Mind was successfully created.', action: 'index'
     end
+  end
 
-
-    def save_and_notificate(hash, mind=hash[:mind])
-      save_streams mind
-      mind.save
-      if hash[:action] == 'update'
-        redirect_to mind, notice: 'Mind was successfully updated.', action: 'index'
-      elsif hash[:action] == 'create'
-        redirect_to mind, notice: 'Mind was successfully created.', action: 'index'
-      end     
-    end
+  def validate_streams
+    names = params.require(:mind).permit(:streams)['streams'].split(' ')
+    names.all? { |name| Stream.new(:name => name).valid? }
+  end
 
 end
