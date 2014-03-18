@@ -2,15 +2,15 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
+#gem 'pg'
 
 group :production do
-  #gem 'pg'
+
 end
 
 group :development, :test do
-  gem 'sqlite3'
-  #gem 'pg'
   #gem 'activerecord-postgres-hstore'
+  gem 'sqlite3'
 end
 
 group :test do
@@ -19,6 +19,12 @@ group :test do
   gem 'factory_girl'
   gem 'database_cleaner'
 end
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -46,11 +52,6 @@ gem 'jbuilder', '~> 1.2'
 
 # Шаблонизатор Slim
 gem 'slim-rails'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
 
 # For Heroku
 gem 'rails_12factor', group: :production
