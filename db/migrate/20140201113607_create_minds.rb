@@ -1,7 +1,7 @@
 class CreateMinds < ActiveRecord::Migration
   def change
     create_table :minds do |t|
-      t.string :question
+      t.string :title
       t.text :text, null: false
       t.references :user, index: true, null: false
       t.timestamps
