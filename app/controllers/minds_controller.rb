@@ -42,12 +42,12 @@ class MindsController < ApplicationController
 
 
     def mind_params
-      params.require(:mind).permit(:title, :text)
+      params.require(:mind).permit(:title, :text, :streams_string)
     end
 
 
     def save_streams mind
-      new_names = params.require(:mind).permit(:streams)['streams'].split(' ')
+      new_names = mind_params['streams_string'].split(' ')
       mind.streams.each do |stream|
           mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
       end  
