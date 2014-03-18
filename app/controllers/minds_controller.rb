@@ -24,7 +24,7 @@ class MindsController < ApplicationController
   end
 
   def update
-    @mind.update(mind_params) ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
+    @mind.assign_attributes(mind_params) ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
   end
 
   def destroy
