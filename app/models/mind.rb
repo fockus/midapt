@@ -15,7 +15,6 @@ class Mind < ActiveRecord::Base
 		presence: true,
 		length: { in: 5..1000 }
 
-	#validates_associated :streams
 	attr_accessor :streams_string
 
 
