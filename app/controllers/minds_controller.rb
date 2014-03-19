@@ -51,14 +51,12 @@ class MindsController < ApplicationController
     render_404 unless @mind = Mind.where(id: params[:id]).first
   end
 
-
   def mind_params
-    params.require(:mind).permit(:title, :text, :streams_string)
+    params.require(:mind).permit(:title, :text, :streams_names)
   end
 
-
   def save_streams mind
-    new_names = mind_params['streams_string'].split(' ')
+    new_names = get_streams_names
     mind.streams.each do |stream|
       mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
     end
@@ -70,7 +68,6 @@ class MindsController < ApplicationController
     end
   end
 
-
   def save_and_notificate(hash, mind=hash[:mind])
     save_streams mind
     mind.save
@@ -81,10 +78,12 @@ class MindsController < ApplicationController
     end
   end
 
-
   def validate_streams
-    names = mind_params['streams_string'].split(' ')
-    names.all? { |name| Stream.new(:name => name).valid? }
+    get_streams_names.all? { |name| Stream.new(:name => name).valid? }
+  end
+
+  def get_streams_names
+    mind_params['streams_names'].split(' ')
   end
 
 end

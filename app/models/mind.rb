@@ -15,7 +15,7 @@ class Mind < ActiveRecord::Base
 		presence: true,
 		length: { in: 5..1000 }
 
-	attr_accessor :streams_string
+	attr_accessor :streams_names
 
 
 end
