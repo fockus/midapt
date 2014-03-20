@@ -78,6 +78,8 @@ gem 'cancancan', '~> 1.7'
 # https://github.com/Apipie/apipie-demo
 gem 'apipie-rails'
 
+gem 'simple_form'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
