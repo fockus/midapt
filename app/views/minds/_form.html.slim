@@ -18,7 +18,7 @@
   .field
     = f.label :streams_names
     br
-    = f.text_field :streams_names, :value => @mind.streams.nil? ? '' : @mind.streams.collect(&:name).join(' ')
+    = f.text_field :streams_names
 
     = debug @mind  
     
