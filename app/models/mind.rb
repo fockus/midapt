@@ -11,9 +11,7 @@ class Mind < ActiveRecord::Base
     @streams_names ||= self.streams.nil? ? '' : self.streams.collect(&:name).join(' ')
   end
 
-  def streams_names=(value)
-    @streams_names = value
-  end
+  attr_writer :streams_names
 
   validates :title,
             length: {in: 5..100}, allow_blank: true

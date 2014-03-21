@@ -44,7 +44,7 @@ class MindsController < ApplicationController
   end
 
   def save_and_notificate(hash, mind=hash[:mind])
-    @mind.assign_streams
+    mind.assign_streams
     mind.save
     if hash[:action] == 'update'
       redirect_to mind, notice: 'Mind was successfully updated.', action: 'index'
