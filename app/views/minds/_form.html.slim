@@ -18,8 +18,8 @@
   .field
     = f.label :streams_names
     br
-    = f.input :streams_names, label: false, 
-      input_html: { value: @mind.streams.nil? ? '' : @mind.streams.collect(&:name).join(' ') } 
+    = f.input :streams_names, label: false
+
 
     = debug @mind  
     

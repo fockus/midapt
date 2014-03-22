@@ -19,24 +19,13 @@ class MindsController < ApplicationController
   end
 
   def create
-    if validate_streams
       @mind = current_user.minds.new mind_params
       @mind.valid? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
-    else
-      flash[:error] = "Streams are invalid."
-      render(action: 'new')
-    end
   end
 
   def update
-
-    if validate_streams
       @mind.assign_attributes(mind_params)
       @mind.valid? ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
-    else
-      flash[:error] = "Streams are invalid."
-      render(action: 'new')
-    end
   end
 
   def destroy
@@ -44,46 +33,24 @@ class MindsController < ApplicationController
     redirect_to minds_url
   end
 
-
   private
 
   def set_mind
-    render_404 unless @mind = Mind.where(id: params[:id]).first
+    render_404 unless @mind = Mind.where(id: params[:id]).eager_load(:streams).first
   end
 
   def mind_params
     params.require(:mind).permit(:title, :text, :streams_names)
   end
 
-  def save_streams mind
-    new_names = get_streams_names
-    mind.streams.each do |stream|
-      mind.streams.delete stream if new_names.index { |s| s == stream.name }.nil?
-    end
-    new_names.each do |stream_name|
-      if mind.streams.index { |s| s.name == stream_name }.nil?
-        stream = Stream.where(name: stream_name).first
-        mind.streams << (stream.nil? ? Stream.new(:name => stream_name) : stream)
-      end
-    end
-  end
-
   def save_and_notificate(hash, mind=hash[:mind])
-    save_streams mind
+    mind.assign_streams
     mind.save
     if hash[:action] == 'update'
       redirect_to mind, notice: 'Mind was successfully updated.', action: 'index'
     elsif hash[:action] == 'create'
       redirect_to mind, notice: 'Mind was successfully created.', action: 'index'
     end
-  end
-
-  def validate_streams
-    get_streams_names.all? { |name| Stream.new(:name => name).valid? }
-  end
-
-  def get_streams_names
-    mind_params['streams_names'].split(' ')
   end
 
 end
