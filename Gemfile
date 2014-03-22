@@ -78,6 +78,7 @@ gem 'cancancan', '~> 1.7'
 # https://github.com/Apipie/apipie-demo
 gem 'apipie-rails'
 
+# SimpleForm
 gem 'simple_form'
 
 

@@ -1,4 +1,12 @@
 class HomeController < ApplicationController
- #before_action :authenticate_user!  # Set up a controller with user authentication
+
+  def index
+    @minds = Mind.all
+  end
+
+#  def show
+#  	@mind = Mind.where(id: params[:id]).eager_load(:streams).first
+#  end
+
 
 end

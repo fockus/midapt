@@ -1,19 +1,11 @@
 class Mind < ActiveRecord::Base
   belongs_to :user
 
-  has_many :comments
-  has_many :marks, as: :markable
+  has_many 	:comments
+  has_many 	:marks, as: :markable
 
-  has_many :mind_streams, inverse_of: :mind, :dependent => :destroy
-  has_many :streams, through: :mind_streams
-
-  def streams_names
-    @streams_names ||= self.streams.nil? ? '' : self.streams.collect(&:name).join(' ')
-  end
-
-  def streams_names=(value)
-    @streams_names = value
-  end
+  has_many 	:mind_streams, inverse_of: :mind, :dependent => :destroy
+  has_many 	:streams, through: :mind_streams
 
   validates :title,
             length: {in: 5..100}, allow_blank: true
@@ -23,6 +15,14 @@ class Mind < ActiveRecord::Base
             length: {in: 5..1000}
 
   validates_with StreamsNamesValidator
+
+  def streams_names=(value)
+  	@streams_names = value
+  end
+
+  def streams_names
+  	@streams_names ||= self.streams.nil? ? '' : self.streams.collect(&:name).join(' ')
+  end
 
   def assign_streams
     new_names = @streams_names.split(' ')
