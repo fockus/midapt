@@ -7,7 +7,7 @@ describe MindsController do
       get :index
 
       subject.current_user.should be_nil
-      response.status.should be_in(302, 401) # 302 Moved Temporarily - for http requests and redirect to sing_in page and 401 Unauthorized  - for other request types
+      [302, 401].should include response.status # 302 Moved Temporarily - for http requests and redirect to sing_in page and 401 Unauthorized  - for other request types
     end
 
     it 'renders the index template if user is signed in' do
