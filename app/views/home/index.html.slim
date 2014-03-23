@@ -2,22 +2,33 @@ h1 Welcome in Midapt!
 - unless user_signed_in?
   p= link_to 'Sign up as User', new_user_registration_path
   p= link_to 'Sign in as User', new_user_session_path
-p Hello World, this is Midapt, you are welcome!
-table
-  thead
-    tr
-      th Title
-      th Text
-      th Streams
-      th
-  tbody
-    - @minds.each do |mind|
+
+form accept-charset="UTF-8" action="/" method="get"
+  .field
+    label Stream 
+    br
+    input name="search" type="text" value="#{params[:search]}"
+    input type="submit" value="Search"
+
+
+- unless @minds.nil?
+  table
+    thead
       tr
-        td= mind.title
-        td= mind.text
-        td= mind.streams.nil? || mind.streams.length == 0 ? '' : mind.streams.collect(&:name).join(' ')
-        td= link_to 'Show', mind
-br/
+        th Title
+        th Text
+        th Streams
+        th
+    tbody
+      - @minds.each do |mind|
+        tr
+          td= mind.title
+          td= mind.text
+          td= mind.streams.nil? || mind.streams.length == 0 ? '' : mind.streams.collect(&:name).join(' ')
+          td= link_to 'Show', mind
+- else
+  p Введите потоки, которые хотите прочитать 
+br
 = link_to 'New Mind', new_mind_path
 ' 
 = link_to 'May Minds', minds_path

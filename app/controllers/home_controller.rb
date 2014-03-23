@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 
   def index
-    @minds = Mind.all
+    stream = Stream.where(name: params[:search]).first 
+    @minds = stream.minds unless stream.nil?
   end
 
 #  def show
