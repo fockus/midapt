@@ -16,9 +16,8 @@ class Mind < ActiveRecord::Base
 
   validates_with StreamsNamesValidator
 
-  def streams_names=(value)
-  	@streams_names = value
-  end
+
+  attr_writer :streams_names
 
   def streams_names
   	@streams_names ||= self.streams.nil? ? '' : self.streams.collect(&:name).join(' ')

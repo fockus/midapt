@@ -7,6 +7,5 @@ class MindStream < ActiveRecord::Base
 	validates_associated :marks
 	validates_presence_of :mind
 	validates_presence_of :stream
-
-	accepts_nested_attributes_for :stream
+	
 end

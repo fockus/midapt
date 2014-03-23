@@ -19,13 +19,13 @@ class MindsController < ApplicationController
   end
 
   def create
-      @mind = current_user.minds.new mind_params
-      @mind.valid? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
+    @mind = current_user.minds.new mind_params
+    @mind.valid? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
   end
 
   def update
-      @mind.assign_attributes(mind_params)
-      @mind.valid? ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
+    @mind.assign_attributes(mind_params)
+    @mind.valid? ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
   end
 
   def destroy
