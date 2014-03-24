@@ -5,10 +5,11 @@ class MindsController < ApplicationController
 
 
   def index
-    @minds = current_user.minds.eager_load :streams
+    @minds = current_user.minds.includes :streams
   end
 
   def show
+    authorize! :crud, @mind
   end
 
   def new
@@ -36,7 +37,7 @@ class MindsController < ApplicationController
   private
 
   def set_mind
-    render_404 unless @mind = Mind.where(id: params[:id]).eager_load(:streams).first
+    render_404 unless @mind = Mind.where(id: params[:id]).includes(:streams).first
   end
 
   def mind_params
