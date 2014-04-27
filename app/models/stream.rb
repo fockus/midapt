@@ -7,7 +7,8 @@ class Stream < ActiveRecord::Base
 	has_many	:mind_streams, :dependent => :destroy
 	has_many	:minds, through: :mind_streams
 
-	validates :name,
-            presence: true,
-            length: { minimum: 3, maximum: 30 }
+	validates 	:name,
+            	presence: true,
+           		length: { minimum: 3, maximum: 30 }
+
 end

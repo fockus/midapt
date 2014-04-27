@@ -8,7 +8,6 @@ Midapt::Application.routes.draw do
 
   devise_for :users
 
-  resources :home, only: :index
   resources :interests
   resources :mind_streams
   resources :marks
@@ -18,6 +17,7 @@ Midapt::Application.routes.draw do
   resources :users
 
   root 'home#index'
+  get '/minds/:id', to: 'home#mind'
 
 
 end

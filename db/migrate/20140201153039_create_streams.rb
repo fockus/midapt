@@ -4,5 +4,8 @@ class CreateStreams < ActiveRecord::Migration
       t.string :name, index: true, null: false
       t.timestamps
     end
+
+    add_index :streams, :name, :unique => true
+
   end
 end

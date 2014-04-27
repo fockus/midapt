@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  ROLES = %w[admin moderator author banned]
+  ROLES = %w[admin moderator banned]
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	has_many	:interests, :dependent => :destroy
 	has_many	:streams, through: :interests
 
-	validates_associated :minds, :comments, :marks, :interests, :streams
+	#validates_associated :minds, :comments, :marks, :interests, :streams
 
   accepts_nested_attributes_for :minds, :allow_destroy => true 
 

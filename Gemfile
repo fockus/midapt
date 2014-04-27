@@ -5,15 +5,24 @@ gem 'rails', '4.0.4'
 #gem 'pg'
 
 group :production do
-
+  # For Heroku
+  gem 'rails_12factor'
+  # Use Uglifier as compressor for JavaScript assets
+  gem 'uglifier', '>= 1.3.0'
+  # Use Capistrano for deployment
+  # gem 'capistrano', group: :development
 end
 
-group :development, :test do
+group :development do
   #gem 'activerecord-postgres-hstore'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
   gem 'sqlite3'
 end
 
 group :test do
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
   gem 'factory_girl_rails'
@@ -25,12 +34,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Use debugger
+gem 'debugger', group: [:development, :test]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
@@ -53,9 +61,6 @@ gem 'jbuilder', '~> 1.2'
 # Шаблонизатор Slim
 gem 'slim-rails'
 
-# For Heroku
-gem 'rails_12factor', group: :production
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -64,9 +69,6 @@ gem 'unicorn'
 
 # Foreign keys
 gem 'foreigner'
-
-# Validate E-mail
-gem 'validates_email_format_of'
 
 # Authentication solution
 gem 'devise'
@@ -78,9 +80,6 @@ gem 'cancancan', '~> 1.7'
 # https://github.com/Apipie/apipie-demo
 gem 'apipie-rails'
 
+# SimpleForm
+gem 'simple_form'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-gem 'debugger', group: [:development, :test]
