@@ -1,5 +1,10 @@
 require 'spec_helper'
 
+def sign_in_user
+  @user = create(:user)
+  sign_in @user
+end
+
 describe MindsController do
   describe 'routing' do
     it 'routes to #index' do
@@ -27,26 +32,49 @@ describe MindsController do
     end
 
   end
-  describe 'GET index' do
+  describe '#index' do
     it 'renders the index template' do
 
       get :index
 
-      subject.current_user.should be_nil
+      expect(subject.current_user).to be_nil
       [302, 401].should include response.status # 302 Moved Temporarily - for http requests and redirect to sing_in page and 401 Unauthorized  - for other request types
     end
 
     it 'renders the index template if user is signed in' do
-      @user = create(:user)
-      sign_in @user
+      sign_in_user
 
       get :index
 
-      subject.current_user.should eq @user
+      expect(subject.current_user).to eq(@user)
       expect(response).to render_template :index
     end
+  end
 
+  describe '#create' do
+    context 'when valid' do
+      let!(:mind) { build(:mind) }
+      before do
+        sign_in_user
+        post :create, :mind => mind.attributes
+      end
 
+      it { expect(response).to redirect_to(mind_path(1)) }
+
+      it 'should flash notice' do
+        expect(flash[:notice]).to be
+      end
+    end
+
+    context 'when invalid' do
+      let!(:invalid_mind) { build(:invalid_mind) }
+      before do
+        sign_in_user
+        post :create, :mind => invalid_mind.attributes
+      end
+
+      it { expect(response).to render_template(:new) }
+    end
   end
 
 end
