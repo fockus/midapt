@@ -76,5 +76,35 @@ describe MindsController do
       it { expect(response).to render_template(:new) }
     end
   end
+  describe '#update' do
+    context 'when valid' do
+      let!(:mind) { create(:mind) }
+      before do
+        sign_in mind.user
 
+        mind.text = 'new valid text'
+        put :update, :id => mind.id, :mind => mind.attributes
+      end
+
+      it { expect(response).to redirect_to(mind_path(mind))}
+
+      it 'should flash notice' do
+        expect(flash[:notice]).to be
+      end
+    end
+
+    context 'when invalid' do
+      let!(:mind) { create(:mind) }
+      before do
+        sign_in mind.user
+
+        mind.text = '' # invalid text
+        put :update, :id => mind.id, :mind => mind.attributes
+      end
+
+      it { expect(response).to render_template(:edit)}
+    end
+  end
 end
+
+
