@@ -41,5 +41,27 @@ describe HomeController do
         end
       end
     end
+
+    describe '#mind' do
+      context 'when mind exists' do
+        let!(:mind) { create(:mind) }
+        before do
+          get :mind, :id => mind.id
+        end
+
+        it { expect(response).to render_template :show }
+
+        it 'should assign mind' do
+          expect(assigns(:mind)).to eq(mind)
+        end
+      end
+
+      context "when mind doesn't exist" do
+        before do
+          get :mind, :id => 0
+        end
+        it { expect(response.status).to eq(404) }
+      end
+    end
   end
 end
