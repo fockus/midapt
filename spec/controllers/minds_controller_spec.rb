@@ -43,6 +43,7 @@ describe MindsController do
       context 'when user is signed in' do
         let!(:mind1) { create(:mind, user: user) }
         let!(:mind2) { create(:mind, user: user) }
+        let!(:mind3) { create(:mind, user: create(:user)) }
         before do
           sign_in user
           get :index
@@ -55,6 +56,10 @@ describe MindsController do
 
         it "should assign user's minds" do
           expect(assigns(:minds)).to match_array([mind1, mind2])
+        end
+
+        it "shouldn't assign other user's minds" do
+          expect(assigns(:minds)).not_to include(mind3)
         end
       end
     end
