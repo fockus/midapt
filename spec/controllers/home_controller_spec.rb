@@ -2,7 +2,13 @@ require 'spec_helper'
 
 describe HomeController do
   describe 'routing' do
+    it 'routes to #index' do
+      expect(:get => '/').to route_to(:controller => 'home', :action => 'index')
+    end
 
+    it 'routes to #mind' do
+      expect(:get => '/minds/1').to route_to(:controller => 'home', :action => 'mind', :id => '1')
+    end
   end
 
   describe 'actions' do
