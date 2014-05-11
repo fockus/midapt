@@ -54,10 +54,9 @@ describe MindsController do
   describe '#create' do
     context 'when valid' do
       let!(:mind) { build(:mind) }
-      let!(:stream) { build(:stream) }
       before do
         sign_in_user
-        mind.streams_names = stream.name
+        mind.streams_names = FactoryGirl.generate(:valid_stream_name)
         post :create, :mind => mind.attributes
       end
 
@@ -70,10 +69,9 @@ describe MindsController do
 
     context 'when invalid' do
       let!(:invalid_mind) { build(:invalid_mind) }
-      let!(:invalid_stream) { build(:invalid_stream) }
       before do
         sign_in_user
-        invalid_mind.streams_names = invalid_stream.name
+        invalid_mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
         post :create, :mind => invalid_mind.attributes
       end
 
@@ -83,12 +81,11 @@ describe MindsController do
   describe '#update' do
     context 'when valid' do
       let!(:mind) { create(:mind) }
-      let!(:stream) { build(:stream) }
       before do
         sign_in mind.user
 
-        mind.text = 'new valid text'
-        mind.streams_names = stream.name
+        mind.text = FactoryGirl.generate(:valid_mind_text)
+        mind.streams_names = FactoryGirl.generate(:valid_stream_name)
         put :update, :id => mind.id, :mind => mind.attributes
       end
 
@@ -101,12 +98,11 @@ describe MindsController do
 
     context 'when invalid' do
       let!(:mind) { create(:mind) }
-      let!(:invalid_stream) { build(:invalid_stream) }
       before do
         sign_in mind.user
 
-        mind.text = '' # invalid text
-        mind.streams_names = invalid_stream.name
+        mind.text = FactoryGirl.generate(:invalid_mind_text)
+        mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
         put :update, :id => mind.id, :mind => mind.attributes
       end
 

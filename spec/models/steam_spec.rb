@@ -4,7 +4,7 @@ describe Stream do
   describe 'name' do
     context 'when valid' do
       it 'should accept valid name' do
-        stream_valid_name = Stream.new(name: Forgery(:basic).text(:at_least => 3, :at_most => 30) )
+        stream_valid_name = Stream.new(name: FactoryGirl.generate(:valid_stream_name) )
 
         stream_valid_name.valid?
 
@@ -22,7 +22,7 @@ describe Stream do
       end
 
       it 'should reject short name' do
-        stream_short_name = Stream.new(name: Forgery(:basic).text(:at_least => 1, :at_most => 2) )
+        stream_short_name = Stream.new(name: FactoryGirl.generate(:short_stream_name) )
 
         stream_short_name.valid?
 
@@ -30,7 +30,7 @@ describe Stream do
       end
 
       it 'should reject long name' do
-        stream_long_name = Stream.new(name: Forgery(:basic).text(:at_least => 31, :at_most => 100) )
+        stream_long_name = Stream.new(name: FactoryGirl.generate(:long_stream_name) )
 
         stream_long_name.valid?
 
