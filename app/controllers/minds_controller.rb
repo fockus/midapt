@@ -37,7 +37,7 @@ class MindsController < ApplicationController
   private
 
   def set_mind
-    render_404 unless @mind = Mind.where(id: params[:id]).includes(:streams).first
+    render_404 unless @mind = Mind.where(id: params[:id]).includes(:streams, :comments).first
   end
 
   def mind_params
