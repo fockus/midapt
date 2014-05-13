@@ -56,6 +56,7 @@ describe MindsController do
       let!(:mind) { build(:mind) }
       before do
         sign_in_user
+        mind.streams_names = FactoryGirl.generate(:valid_stream_name)
         post :create, :mind => mind.attributes
       end
 
@@ -70,6 +71,7 @@ describe MindsController do
       let!(:invalid_mind) { build(:invalid_mind) }
       before do
         sign_in_user
+        invalid_mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
         post :create, :mind => invalid_mind.attributes
       end
 
@@ -82,7 +84,8 @@ describe MindsController do
       before do
         sign_in mind.user
 
-        mind.text = 'new valid text'
+        mind.text = FactoryGirl.generate(:valid_mind_text)
+        mind.streams_names = FactoryGirl.generate(:valid_stream_name)
         put :update, :id => mind.id, :mind => mind.attributes
       end
 
@@ -98,7 +101,8 @@ describe MindsController do
       before do
         sign_in mind.user
 
-        mind.text = '' # invalid text
+        mind.text = FactoryGirl.generate(:invalid_mind_text)
+        mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
         put :update, :id => mind.id, :mind => mind.attributes
       end
 
