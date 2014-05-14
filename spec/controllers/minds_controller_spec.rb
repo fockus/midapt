@@ -64,6 +64,24 @@ describe MindsController do
       end
     end
 
+    describe '#show' do
+      let!(:mind) { create(:mind) }
+      let!(:comment1) { create(:comment, user: user, mind: mind) }
+      let!(:comment2) { create(:comment, user: user, mind: mind) }
+      before do
+        sign_in user
+        get :show, :id => mind.id
+      end
+
+      it 'should assign mind' do
+        expect(assigns(:mind)).to eq(mind)
+      end
+
+      it "should assign mind's comment" do
+        expect(assigns(:mind).comments).to match_array([comment1, comment2])
+      end
+    end
+
     describe '#create' do
       context 'when valid' do
         let!(:mind) { build(:mind) }
@@ -89,6 +107,14 @@ describe MindsController do
         end
 
         it { expect(response).to render_template(:new) }
+
+        it 'assigned mind has errors' do
+          expect(assigns(:mind).errors).to_not be_empty
+        end
+
+        it 'assigned mind is not saved' do
+          expect(assigns(:mind)).to be_new_record
+        end
       end
     end
     describe '#update' do
@@ -120,6 +146,10 @@ describe MindsController do
         end
 
         it { expect(response).to render_template(:edit) }
+
+        it 'assigned mind has errors' do
+          expect(assigns(:mind).errors).to_not be_empty
+        end
       end
     end
   end
