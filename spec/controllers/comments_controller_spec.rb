@@ -21,20 +21,32 @@ describe CommentsController do
 
   describe 'actions' do
     let!(:user) { create(:user) }
+    let!(:mind) { create(:mind) }
     describe '#new' do
       context 'when user is not signed in' do
         it 'redirects to sign in page or returns 401' do
 
-          get :new, :mind_id => '1'
+          get :new, :mind_id => mind.id
 
           [302, 401].should include response.status # 302 Moved Temporarily - for http requests and redirect to sing_in page and 401 Unauthorized  - for other request types
         end
       end
 
-      context 'when user is signed in' do
+      context 'when mind does not exist' do
         before do
           sign_in user
-          get :new, :mind_id => '1'
+          get :new, :mind_id => '0'
+        end
+
+        it 'should return 404' do
+          expect(response.status).to eq(404)
+        end
+      end
+
+      context 'when mind exists' do
+        before do
+          sign_in user
+          get :new, :mind_id => mind.id
         end
 
         it { expect(response).to render_template :new }
@@ -42,10 +54,9 @@ describe CommentsController do
     end
 
     describe '#create' do
-      let!(:mind) { create(:mind) }
       let!(:comment) { build(:comment, mind: mind, user: user) }
       context 'when user is not signed in' do
-        it 'redirects to sign in page or returns 401' do
+        it 'should redirect to sign in page or returns 401' do
 
           post :create, :mind_id => mind.id, :comment => comment.attributes
 
@@ -53,29 +64,38 @@ describe CommentsController do
         end
       end
 
-      context 'when user is signed in' do
-        context 'and comment is valid' do
-          before do
-            sign_in user
-            post :create, :mind_id => mind.id, :comment => comment.attributes
-          end
-
-          it { expect(response).to redirect_to(mind_path(mind)) }
-
-          it 'should flash notice' do
-            expect(flash[:notice]).to be
-          end
+      context 'when mind does not exist' do
+        before do
+          sign_in user
+          post :create, :mind_id => '0', :comment => comment.attributes
         end
 
-        context 'and comment is invalid' do
-          let!(:invalid_comment) { build(:invalid_comment, mind: mind, user: user) }
-          before do
-            sign_in user
-            post :create, :mind_id => mind.id, :comment => invalid_comment.attributes
-          end
-
-          it { expect(response).to render_template :new }
+        it 'should return 404' do
+          expect(response.status).to eq(404)
         end
+      end
+
+      context 'when comment is valid' do
+        before do
+          sign_in user
+          post :create, :mind_id => mind.id, :comment => comment.attributes
+        end
+
+        it { expect(response).to redirect_to(mind_path(mind)) }
+
+        it 'should flash notice' do
+          expect(flash[:notice]).to be
+        end
+      end
+
+      context 'when comment is invalid' do
+        let!(:invalid_comment) { build(:invalid_comment, mind: mind, user: user) }
+        before do
+          sign_in user
+          post :create, :mind_id => mind.id, :comment => invalid_comment.attributes
+        end
+
+        it { expect(response).to render_template :new }
       end
     end
   end
