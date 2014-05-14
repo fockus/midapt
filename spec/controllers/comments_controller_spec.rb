@@ -96,6 +96,15 @@ describe CommentsController do
         end
 
         it { expect(response).to render_template :new }
+
+        it 'assigned comment has errors' do
+          expect(assigns(:comment).errors).to_not be_empty
+        end
+
+        it 'assigned comment is not saved' do
+          expect(assigns(:comment)).to be_new_record
+        end
+
       end
     end
   end
