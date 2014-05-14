@@ -25,8 +25,9 @@ group :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'forgery'
 end
 
 group :doc do

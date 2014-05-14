@@ -1,29 +1,42 @@
 require 'spec_helper'
 
 describe Stream do
-  it "validates its name and makes sure that it isn't nil" do
-    stream_nil = Stream.new(name: nil)
+  describe 'name' do
+    context 'when valid' do
+      it 'should accept valid name' do
+        stream_valid_name = Stream.new(name: FactoryGirl.generate(:valid_stream_name) )
 
-    stream_nil.valid?
+        stream_valid_name.valid?
 
-    stream_nil.errors[:name].should_not be_empty
+        stream_valid_name.errors[:name].should be_empty
+      end
+    end
+
+    context 'when invalid' do
+      it 'should reject nil name' do
+        stream_nil_name= Stream.new(name: nil)
+
+        stream_nil_name.valid?
+
+        stream_nil_name.errors[:name].should_not be_empty
+      end
+
+      it 'should reject short name' do
+        stream_short_name = Stream.new(name: FactoryGirl.generate(:short_stream_name) )
+
+        stream_short_name.valid?
+
+        stream_short_name.errors[:name].should_not be_empty
+      end
+
+      it 'should reject long name' do
+        stream_long_name = Stream.new(name: FactoryGirl.generate(:long_stream_name) )
+
+        stream_long_name.valid?
+
+        stream_long_name.errors[:name].should_not be_empty
+      end
+    end
   end
 
-  it "validates its name and makes sure that it's consisted of 3-120 symbols" do
-    stream_2 = Stream.new(name: '@' * 2 )
-    stream_3 = Stream.new(name: '@' * 3 )
-    stream_30 = Stream.new(name: '@' * 30 )
-    stream_31 = Stream.new(name: '@' * 31 )
-
-
-    stream_2.valid?
-    stream_3.valid?
-    stream_30.valid?
-    stream_31.valid?
-
-    stream_2.errors[:name].should_not be_empty
-    stream_3.errors[:name].should be_empty
-    stream_30.errors[:name].should be_empty
-    stream_31.errors[:name].should_not be_empty
-  end
 end
