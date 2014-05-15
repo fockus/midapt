@@ -1,29 +1,41 @@
 require 'spec_helper'
 
 describe Comment do
-  it "validates its message and makes sure that it isn't nil" do
-    comment_nil = Comment.new(message: nil)
+  describe 'message' do
+    context 'when valid' do
+      it 'should accept valid message' do
+        comment_valid_message = Comment.new(message: FactoryGirl.generate(:valid_comment_message))
 
-    comment_nil.valid?
+        comment_valid_message.valid?
 
-    comment_nil.errors[:message].should_not be_empty
-  end
+        comment_valid_message.errors[:message].should be_empty
+      end
+    end
 
-  it "validates its message and makes sure that it's consisted of 5-200 symbols" do
-    comment_4 = Comment.new(message: '@' * 4 )
-    comment_5 = Comment.new(message: '@' * 5 )
-    comment_200 = Comment.new(message: '@' * 200 )
-    comment_201 = Comment.new(message: '@' * 201 )
+    context 'when invalid' do
+      it 'should reject nil message' do
+        comment_nil = Comment.new(message: nil)
 
+        comment_nil.valid?
 
-    comment_4.valid?
-    comment_5.valid?
-    comment_200.valid?
-    comment_201.valid?
+        comment_nil.errors[:message].should_not be_empty
+      end
 
-    comment_4.errors[:message].should_not be_empty
-    comment_5.errors[:message].should be_empty
-    comment_200.errors[:message].should be_empty
-    comment_201.errors[:message].should_not be_empty
+      it 'should reject short message' do
+        comment_short_message = Comment.new(message: FactoryGirl.generate(:short_comment_message))
+
+        comment_short_message.valid?
+
+        comment_short_message.errors[:message].should_not be_empty
+      end
+
+      it 'should reject long message' do
+        comment_long_message = Comment.new(message: FactoryGirl.generate(:long_comment_message))
+
+        comment_long_message.valid?
+
+        comment_long_message.errors[:message].should_not be_empty
+      end
+    end
   end
 end

@@ -8,6 +8,6 @@ p
 p
   strong User:
   = @comment.user
-= link_to 'Edit', edit_comment_path(@comment)
+= link_to 'Edit', edit_mind_comment_path(@comment)
 |
-= link_to 'Back', comments_path
+= link_to 'Back', @comment.mind

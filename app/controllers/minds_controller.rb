@@ -26,12 +26,12 @@ class MindsController < ApplicationController
 
   def create
     @mind = current_user.minds.new mind_params
-    @mind.valid? ? save_and_notify(mind: @mind, action: 'create') : render(action: 'new')
+    @mind.valid? ? save_and_notificate(mind: @mind, action: 'create') : render(action: 'new')
   end
 
   def update
     @mind.assign_attributes(mind_params)
-    @mind.valid? ? save_and_notify(mind: @mind, action: 'update') : render(action: 'edit')
+    @mind.valid? ? save_and_notificate(mind: @mind, action: 'update') : render(action: 'edit')
   end
 
   def destroy
@@ -42,14 +42,14 @@ class MindsController < ApplicationController
   private
 
   def set_mind
-    render_404 unless (@mind = Mind.where(id: params[:id]).includes(:streams).first)
+    render_404 unless @mind = Mind.where(id: params[:id]).includes(:streams, :comments).first
   end
 
   def mind_params
     params.require(:mind).permit(:title, :text, :streams_names)
   end
 
-  def save_and_notify(hash, mind=hash[:mind])
+  def save_and_notificate(hash, mind=hash[:mind])
     mind.assign_streams
     mind.save
     if hash[:action] == 'update'
