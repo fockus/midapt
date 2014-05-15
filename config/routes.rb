@@ -13,11 +13,10 @@ Midapt::Application.routes.draw do
   resources :marks
   resources :streams
   resources :comments
-  resources :minds, path: '/my/minds'
+  resources :minds
   resources :users
 
   root 'home#index'
-  get '/minds/:id', to: 'home#mind'
 
-
+  get '/my/minds', to: 'minds#user_index'
 end

@@ -1,15 +1,20 @@
 class MindsController < ApplicationController
-  before_filter :authenticate_user! # Device
+  before_filter :authenticate_user!, only: [:user_index, :new, :create, :edit, :update] # Device
   before_action :set_mind, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource param_method: :mind_params # CanCan
 
 
   def index
+    @minds = Mind.all.includes :streams
+  end
+
+  def user_index
     @minds = current_user.minds.includes :streams
+    render(action: 'index')
   end
 
   def show
-    authorize! :crud, @mind
+    @mind
   end
 
   def new
