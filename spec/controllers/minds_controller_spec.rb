@@ -152,37 +152,67 @@ describe MindsController do
     end
 
     describe '#update' do
-      context 'when valid' do
+      context "when mind doesn't exist" do
         let!(:mind) { create(:mind) }
         before do
           sign_in mind.user
 
           mind.text = FactoryGirl.generate(:valid_mind_text)
           mind.streams_names = FactoryGirl.generate(:valid_stream_name)
-          put :update, :id => mind.id, :mind => mind.attributes
+          put :update, :id => 0, :mind => mind.attributes
         end
-
-        it { expect(response).to redirect_to(mind_path(mind)) }
-
-        it 'should flash notice' do
-          expect(flash[:notice]).to be
-        end
+        it { expect(response.status).to eq(404) }
       end
 
-      context 'when invalid' do
-        let!(:mind) { create(:mind) }
-        before do
-          sign_in mind.user
+      context "when another's mind" do
+        let!(:another) { create (:user) }
+        let!(:mind) { create(:mind, user: another) }
 
-          mind.text = FactoryGirl.generate(:invalid_mind_text)
-          mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
+        before do
+          sign_in user
+
+          mind.text = FactoryGirl.generate(:valid_mind_text)
+          mind.streams_names = FactoryGirl.generate(:valid_stream_name)
+
           put :update, :id => mind.id, :mind => mind.attributes
         end
+        it { expect(response.status).to eq(403) }
+      end
 
-        it { expect(response).to render_template(:edit) }
+      context 'when own mind exists' do
+        context 'when valid' do
+          let!(:mind) { create(:mind) }
+          before do
+            sign_in mind.user
 
-        it 'assigned mind has errors' do
-          expect(assigns(:mind).errors).to_not be_empty
+            mind.text = FactoryGirl.generate(:valid_mind_text)
+            mind.streams_names = FactoryGirl.generate(:valid_stream_name)
+            put :update, :id => mind.id, :mind => mind.attributes
+          end
+
+          it { expect(response).to redirect_to(mind_path(mind)) }
+
+          it 'should flash notice' do
+            expect(flash[:notice]).to be
+          end
+        end
+
+        context 'when invalid' do
+          let!(:mind) { create(:mind) }
+          before do
+            sign_in mind.user
+
+            mind.text = FactoryGirl.generate(:invalid_mind_text)
+            mind.streams_names = FactoryGirl.generate(:invalid_stream_name)
+
+            put :update, :id => mind.id, :mind => mind.attributes
+          end
+
+          it { expect(response).to render_template(:edit) }
+
+          it 'assigned mind has errors' do
+            expect(assigns(:mind).errors).to_not be_empty
+          end
         end
       end
     end
