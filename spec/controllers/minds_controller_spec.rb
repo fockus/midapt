@@ -31,6 +31,7 @@ describe MindsController do
     end
 
   end
+
   describe 'actions' do
     let!(:user) { create(:user) }
 
@@ -86,10 +87,11 @@ describe MindsController do
       end
     end
 
-
     describe '#show' do
       context 'when mind exists' do
         let!(:mind) { create(:mind) }
+        let!(:comment1) { create(:comment, user: user, mind: mind) }
+        let!(:comment2) { create(:comment, user: user, mind: mind) }
         before do
           get :show, :id => mind.id
         end
@@ -99,6 +101,10 @@ describe MindsController do
         it 'should assign mind' do
           expect(assigns(:mind)).to eq(mind)
         end
+
+        it "should assign mind's comment" do
+          expect(assigns(:mind).comments).to match_array([comment1, comment2])
+        end
       end
 
       context "when mind doesn't exist" do
@@ -106,24 +112,6 @@ describe MindsController do
           get :show, :id => 0
         end
         it { expect(response.status).to eq(404) }
-      end
-    end
-
-    describe '#show' do
-      let!(:mind) { create(:mind) }
-      let!(:comment1) { create(:comment, user: user, mind: mind) }
-      let!(:comment2) { create(:comment, user: user, mind: mind) }
-      before do
-        sign_in user
-        get :show, :id => mind.id
-      end
-
-      it 'should assign mind' do
-        expect(assigns(:mind)).to eq(mind)
-      end
-
-      it "should assign mind's comment" do
-        expect(assigns(:mind).comments).to match_array([comment1, comment2])
       end
     end
 
@@ -162,6 +150,7 @@ describe MindsController do
         end
       end
     end
+
     describe '#update' do
       context 'when valid' do
         let!(:mind) { create(:mind) }
