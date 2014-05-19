@@ -23,9 +23,11 @@ test: &test
 
 production:
   adapter: postgresql
-  host: localhost
-  username: user
-  database: app-dev
+  encoding: unicode
+  database: midapt
+  pool: 5
+  username: midapt
+  password: 123456
 
 cucumber:
   <<: *test

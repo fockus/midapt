@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
-#gem 'pg'
+
 
 group :production do
   # For Heroku
@@ -11,6 +11,7 @@ group :production do
   gem 'uglifier', '>= 1.3.0'
   # Use Capistrano for deployment
   # gem 'capistrano', group: :development
+  gem 'pg'
 end
 
 group :development do
