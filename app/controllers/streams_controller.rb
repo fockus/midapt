@@ -1,28 +1,20 @@
 class StreamsController < ApplicationController
   before_action :set_stream, only: [:show, :edit, :update, :destroy]
 
-  # GET /streams
-  # GET /streams.json
   def index
     @streams = Stream.all
   end
 
-  # GET /streams/1
-  # GET /streams/1.json
   def show
   end
 
-  # GET /streams/new
   def new
     @stream = Stream.new
   end
 
-  # GET /streams/1/edit
   def edit
   end
 
-  # POST /streams
-  # POST /streams.json
   def create
     @stream = Stream.new stream_params
 
@@ -37,8 +29,6 @@ class StreamsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /streams/1
-  # PATCH/PUT /streams/1.json
   def update
     respond_to do |format|
       if @stream.update(stream_params)
@@ -51,8 +41,6 @@ class StreamsController < ApplicationController
     end
   end
 
-  # DELETE /streams/1
-  # DELETE /streams/1.json
   def destroy
     @stream.destroy
     respond_to do |format|
@@ -62,13 +50,13 @@ class StreamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stream
-      @stream = Stream.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stream
+    @stream = Stream.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def stream_params
-      params.require(:stream).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def stream_params
+    params.require(:stream).permit(:name)
+  end
 end
