@@ -1,11 +1,8 @@
 h1 Welcome in Midapt!
-- unless user_signed_in?
-  p= link_to 'Sign up as User', new_user_registration_path
-  p= link_to 'Sign in as User', new_user_session_path
 
 form accept-charset="UTF-8" action="/" method="get"
   .field
-    label Stream 
+    = link_to 'Streams', streams_path
     br
     input name="search" type="text" value="#{params[:search]}"
     input type="submit" value="Search"
