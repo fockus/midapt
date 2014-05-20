@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 def with_user(role)
-  return (role == :anonymous) ? nil : create(role)
+  (role == :anonymous) ? nil : create(role)
 end
 
 def act(action, resource)
@@ -16,6 +16,7 @@ def act(action, resource)
       put action, :id => resource.id, :stream => resource.attributes
     when :destroy
       delete action, :id => resource.id
+    else
   end
 end
 
@@ -31,6 +32,7 @@ def get_action_resource(action)
       return create(:stream)
     when :destroy
       return create(:stream)
+    else
   end
 end
 
