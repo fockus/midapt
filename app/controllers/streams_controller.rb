@@ -1,5 +1,6 @@
 class StreamsController < ApplicationController
   before_action :set_stream, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @streams = Stream.all

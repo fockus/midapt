@@ -11,8 +11,7 @@ Midapt::Application.routes.draw do
   #resources :interests
   #resources :mind_streams
   #resources :marks
-  #resources :streams
-  #resources :comments
+  resources :streams
   resources :minds do
     resources :comments
   end
