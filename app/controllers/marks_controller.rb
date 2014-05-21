@@ -1,44 +1,34 @@
 class MarksController < ApplicationController
+  before_filter :authenticate_user!, only: [:create] # Device
   before_action :set_mark, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource param_method: :mark_params
 
-  # GET /marks
-  # GET /marks.json
   def index
     @marks = Mark.all
   end
 
-  # GET /marks/1
-  # GET /marks/1.json
   def show
   end
 
-  # GET /marks/new
   def new
     @mark = Mark.new
   end
 
-  # GET /marks/1/edit
   def edit
   end
 
-  # POST /marks
-  # POST /marks.json
   def create
-    @mark = Mark.new(mark_params)
-
-    respond_to do |format|
-      if @mark.save
-        format.html { redirect_to @mark, notice: 'User comment mark was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @mark }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @mark.errors, status: :unprocessable_entity }
-      end
+    @markable = find_markable
+    @mark = @markable.marks.build(params[:mark].permit(:mark))
+    @mark.user_id = current_user.id
+    if @mark.save
+      redirect_to polymorphic_path(@markable)
+    else
+      flash[:notice] = "something went wrong"
+      redirect_to polymorphic_path(@markable)
     end
   end
 
-  # PATCH/PUT /marks/1
-  # PATCH/PUT /marks/1.json
   def update
     respond_to do |format|
       if @mark.update(mark_params)
@@ -51,8 +41,6 @@ class MarksController < ApplicationController
     end
   end
 
-  # DELETE /marks/1
-  # DELETE /marks/1.json
   def destroy
     @mark.destroy
     respond_to do |format|
@@ -62,13 +50,19 @@ class MarksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mark
-      @mark = Mark.find(params[:id])
-    end
+  def set_mark
+    @mark = Mark.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def mark_params
-      params.require(:mark).permit(:mark)
+  def mark_params
+    params.require(:mark).permit(:mark)
+  end
+
+  def find_markable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
     end
+  end
 end

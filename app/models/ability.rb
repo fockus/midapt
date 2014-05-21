@@ -9,6 +9,8 @@ class Ability
 
     can :read, :all
 
+    can [:create], Mark unless user.id == 0
+
     can [:create, :user_index], Mind unless user.id == 0
 
     can :modify, Mind, :user_id => user.id
