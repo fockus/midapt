@@ -14,6 +14,7 @@ Midapt::Application.routes.draw do
   resources :streams
   resources :minds do
     resources :comments
+    resources :marks
   end
   resources :users
 
