@@ -19,13 +19,25 @@ class MarksController < ApplicationController
 
   def create
     @markable = find_markable
-    @mark = @markable.marks.build(params[:mark].permit(:mark))
-    @mark.user_id = current_user.id
-    if @mark.save
-      redirect_to polymorphic_path(@markable)
+    if @markable.nil?
+      render_404
     else
-      flash[:notice] = "something went wrong"
-      redirect_to polymorphic_path(@markable)
+      @existing_mark = Mark.where('markable_id = ? and user_id = ?', @markable.id, current_user.id)
+      if @existing_mark.empty?
+        @mark = Mark.new(params[:mark].permit(:mark))
+        @mark.markable = @markable
+        @mark.user = current_user
+        if @mark.save
+          redirect_to polymorphic_path(@markable)
+        else
+          flash[:error] = 'something went wrong'
+          redirect_to polymorphic_path(@markable)
+        end
+      else
+        flash[:alert] = 'you have already voted'
+        redirect_to polymorphic_path(@markable)
+      end
+
     end
   end
 
@@ -61,7 +73,7 @@ class MarksController < ApplicationController
   def find_markable
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
+        return $1.classify.constantize.where(id: value).first
       end
     end
   end
