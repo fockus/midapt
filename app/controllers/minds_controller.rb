@@ -1,6 +1,8 @@
 class MindsController < ApplicationController
+  prepend_before_action :set_mind, only: [:show, :edit, :update, :destroy]
+  before_filter :increment_views, only: [:show]
   before_filter :authenticate_user!, only: [:user_index, :new, :create, :edit, :update] # Device
-  before_action :set_mind, only: [:show, :edit, :update, :destroy]
+
   load_and_authorize_resource param_method: :mind_params # CanCan
 
 
@@ -42,6 +44,11 @@ class MindsController < ApplicationController
   end
 
   private
+
+  def increment_views
+    Mind.increment_counter(:views_count, @mind.id)
+    @mind.reload
+  end
 
   def set_mind
     render_404 unless @mind = Mind.where(id: params[:id]).includes(:streams, :comments).first

@@ -6,6 +6,10 @@ p
   strong Text:
   = @mind.text
 p
+  | Views:
+  '
+  = @mind.views_count
+p
   = render partial: 'mark', locals: {markable: @mind, marks_sum: @marks_sum, has_voted: @has_voted}
 p
   strong Streams:
