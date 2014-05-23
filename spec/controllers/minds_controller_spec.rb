@@ -92,19 +92,60 @@ describe MindsController do
         let!(:mind) { create(:mind) }
         let!(:comment1) { create(:comment, user: user, mind: mind) }
         let!(:comment2) { create(:comment, user: user, mind: mind) }
-        before do
-          get :show, :id => mind.id
+        let!(:mark1) { create(:mark, mark: -1, markable: mind) }
+        let!(:mark2) { create(:mark, mark: -1, markable: mind) }
+        let!(:mark3) { create(:mark, mark: 1, markable: mind) }
+        context 'anonymous' do
+          before do
+            get :show, :id => mind.id
+          end
+
+          it('not assign current_user') { expect(subject.current_user).to be_nil }
+
+          it { expect(response).to render_template :show }
+
+          it 'should assign mind' do
+            expect(assigns(:mind)).to eq(mind)
+          end
+
+          it "should assign mind's comment" do
+            expect(assigns(:mind).comments).to match_array([comment1, comment2])
+          end
+
+          it 'should assign total marks' do
+            expect(assigns(:marks_sum)).to eq(-1)
+          end
+
+          it 'should assign has voted' do
+            expect(assigns(:has_voted)).to be_false
+          end
+        end
+        context 'user' do
+          before do
+            sign_in user
+            get :show, :id => mind.id
+          end
+
+          it('not assign current_user') { expect(subject.current_user).to eq(user) }
+
+          it 'should assign has voted' do
+            expect(assigns(:has_voted)).to be_false
+          end
+        end
+        context 'user has already voted' do
+          let!(:mark) { create(:mark, markable: mind, user: user) }
+          before do
+            sign_in user
+            get :show, :id => mind.id
+          end
+
+          it('not assign current_user') { expect(subject.current_user).to eq(user) }
+
+          it 'should assign has voted' do
+            expect(assigns(:has_voted)).to be_true
+          end
         end
 
-        it { expect(response).to render_template :show }
-
-        it 'should assign mind' do
-          expect(assigns(:mind)).to eq(mind)
-        end
-
-        it "should assign mind's comment" do
-          expect(assigns(:mind).comments).to match_array([comment1, comment2])
-        end
       end
 
       context "when mind doesn't exist" do
