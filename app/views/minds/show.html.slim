@@ -6,7 +6,7 @@ p
   strong Text:
   = @mind.text
 p
-  = render partial: 'mark', locals: {markable: @mind}
+  = render partial: 'mark', locals: {markable: @mind, marks_sum: @marks_sum, has_voted: @has_voted}
 p
   strong Streams:
   = render partial: 'streams', locals: {streams: @mind.streams}

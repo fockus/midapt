@@ -15,6 +15,8 @@ class MindsController < ApplicationController
 
   def show
     @mind
+    @marks_sum = Mark.where(markable_id: @mind.id, markable_type: 'Mind').sum('mark')
+    @has_voted = !(current_user.nil? || Mark.where(user_id: current_user.id, markable_id: @mind.id, markable_type: 'Mind').empty?)
   end
 
   def new

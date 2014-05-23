@@ -1,6 +1,14 @@
-= form_for [markable, Mark.new] do |f|
-  = f.radio_button :mark, -1
-  = f.label 'Dislike'
-  = f.radio_button :mark, 1
-  = f.label 'Like'
-  = f.submit
+div
+  | Total marks:
+  '
+  = marks_sum
+- if user_signed_in?
+  - if has_voted
+    | already voted
+  - else
+    = form_for [markable, Mark.new] do |f|
+      = f.radio_button :mark, -1
+      = f.label 'Dislike'
+      = f.radio_button :mark, 1
+      = f.label 'Like'
+      = f.submit
