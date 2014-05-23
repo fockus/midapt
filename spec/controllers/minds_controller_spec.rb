@@ -88,6 +88,17 @@ describe MindsController do
     end
 
     describe '#show' do
+      describe 'views_counter' do
+        let!(:mind) { create(:mind) }
+        it('should increase counter') do
+          get :show, :id => mind.id
+          expect(assigns(:mind).views_count).to eq(1)
+          get :show, :id => mind.id
+          expect(assigns(:mind).views_count).to eq(2)
+          get :show, :id => mind.id
+          expect(assigns(:mind).views_count).to eq(3)
+        end
+      end
       context 'when mind exists' do
         let!(:mind) { create(:mind) }
         let!(:comment1) { create(:comment, user: user, mind: mind) }
